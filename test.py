@@ -7,59 +7,200 @@ import json, ast
 import plotly.figure_factory as ff
 import geopandas as gpd
 from colour import Color
-import plotly.express as px 
+import plotly.express as px
 import datetime as dt
 import plotly.graph_objects as go
 import calendar
 import json
 from urllib.request import urlopen
 from plotly.subplots import make_subplots
-#import plotly, plotly.graph_objects as go
+
+# import plotly, plotly.graph_objects as go
+
+us_state_to_abbrev = {
+    "Alabama": "AL",
+    "Alaska": "AK",
+    "Arizona": "AZ",
+    "Arkansas": "AR",
+    "California": "CA",
+    "Colorado": "CO",
+    "Connecticut": "CT",
+    "Delaware": "DE",
+    "Florida": "FL",
+    "Georgia": "GA",
+    "Hawaii": "HI",
+    "Idaho": "ID",
+    "Illinois": "IL",
+    "Indiana": "IN",
+    "Iowa": "IA",
+    "Kansas": "KS",
+    "Kentucky": "KY",
+    "Louisiana": "LA",
+    "Maine": "ME",
+    "Maryland": "MD",
+    "Massachusetts": "MA",
+    "Michigan": "MI",
+    "Minnesota": "MN",
+    "Mississippi": "MS",
+    "Missouri": "MO",
+    "Montana": "MT",
+    "Nebraska": "NE",
+    "Nevada": "NV",
+    "New Hampshire": "NH",
+    "New Jersey": "NJ",
+    "New Mexico": "NM",
+    "New York": "NY",
+    "North Carolina": "NC",
+    "North Dakota": "ND",
+    "Ohio": "OH",
+    "Oklahoma": "OK",
+    "Oregon": "OR",
+    "Pennsylvania": "PA",
+    "Rhode Island": "RI",
+    "South Carolina": "SC",
+    "South Dakota": "SD",
+    "Tennessee": "TN",
+    "Texas": "TX",
+    "Utah": "UT",
+    "Vermont": "VT",
+    "Virginia": "VA",
+    "Washington": "WA",
+    "West Virginia": "WV",
+    "Wisconsin": "WI",
+    "Wyoming": "WY",
+    "District of Columbia": "DC",
+    "American Samoa": "AS",
+    "Guam": "GU",
+    "Northern Mariana Islands": "MP",
+    "Puerto Rico": "PR",
+    "United States Minor Outlying Islands": "UM",
+    "U.S. Virgin Islands": "VI"
+}
+
+states = {
+        'AK': 'Alaska',
+        'AL': 'Alabama',
+        'AR': 'Arkansas',
+        'AS': 'American Samoa',
+        'AZ': 'Arizona',
+        'CA': 'California',
+        'CO': 'Colorado',
+        'CT': 'Connecticut',
+        'DC': 'District of Columbia',
+        'DE': 'Delaware',
+        'FL': 'Florida',
+        'GA': 'Georgia',
+        'GU': 'Guam',
+        'HI': 'Hawaii',
+        'IA': 'Iowa',
+        'ID': 'Idaho',
+        'IL': 'Illinois',
+        'IN': 'Indiana',
+        'KS': 'Kansas',
+        'KY': 'Kentucky',
+        'LA': 'Louisiana',
+        'MA': 'Massachusetts',
+        'MD': 'Maryland',
+        'ME': 'Maine',
+        'MI': 'Michigan',
+        'MN': 'Minnesota',
+        'MO': 'Missouri',
+        'MP': 'Northern Mariana Islands',
+        'MS': 'Mississippi',
+        'MT': 'Montana',
+        'NA': 'National',
+        'NC': 'North Carolina',
+        'ND': 'North Dakota',
+        'NE': 'Nebraska',
+        'NH': 'New Hampshire',
+        'NJ': 'New Jersey',
+        'NM': 'New Mexico',
+        'NV': 'Nevada',
+        'NY': 'New York',
+        'OH': 'Ohio',
+        'OK': 'Oklahoma',
+        'OR': 'Oregon',
+        'PA': 'Pennsylvania',
+        'PR': 'Puerto Rico',
+        'RI': 'Rhode Island',
+        'SC': 'South Carolina',
+        'SD': 'South Dakota',
+        'TN': 'Tennessee',
+        'TX': 'Texas',
+        'UT': 'Utah',
+        'VA': 'Virginia',
+        'VI': 'Virgin Islands',
+        'VT': 'Vermont',
+        'WA': 'Washington',
+        'WI': 'Wisconsin',
+        'WV': 'West Virginia',
+        'WY': 'Wyoming'
+}
 
 st.set_page_config(layout="wide")
 
-@st.cache 
+
+@st.cache
 def load_data():
+    cases = pd.read_csv("cleaned/final_transformations/cleaned_cases.csv")
+    vaccines = pd.read_csv("cleaned/final_transformations/cleaned_vaccinations.csv")
 
-    # Reading engagement data
-    engagements = pd.read_csv("cleaned/cleaned_engagement_data.csv")
-    
-    # Reading State wise School Policy data 
-    school_policy = pd.read_csv("cleaned/cleaned_school_policy_data.csv")
-    
-    # Reading Google Mobility data
-    mobility = pd.read_csv("cleaned/cleaned_formatted_mobility.csv")
-    
-    # Reading State wise Mobility Policy data 
-    mobility_policy = pd.read_csv("cleaned/cleaned_mobility_policy_data.csv")
-    
-    # Reading Apple Mobility traffic information based on years
-    apple_mobility2020 = pd.read_csv('cleaned/cleaned_apple_mobility2020.csv').set_index('state')
-    apple_mobility2021 = pd.read_csv('cleaned/cleaned_apple_mobility2021.csv').set_index('state')
-    
-    return engagements, school_policy, mobility, mobility_policy, apple_mobility2020, apple_mobility2021
+    mental_health_statewise = pd.read_csv("cleaned/final_transformations/df_mental_by_state_clean.csv")
+    mental_health_nationwide = pd.read_csv("cleaned/final_transformations/df_mental_national_clean.csv")
+    mental_health = pd.read_csv("cleaned/final_transformations/df_mental.csv")
+    apple_mobility_state = pd.read_csv("cleaned/final_transformations/apple_mobility_states.csv")
+    apple_mobility_time = pd.read_csv("cleaned/final_transformations/apple_mobility_time.csv")
+    return cases, vaccines, mental_health_statewise, mental_health_nationwide, mental_health, apple_mobility_state, apple_mobility_time
 
-st.markdown('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">', unsafe_allow_html=True)
+
+st.markdown(
+    '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">',
+    unsafe_allow_html=True)
 
 st.markdown("""
+
+<script language="javascript">
+
+function changeHeader() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const myParam = urlParams.get('p');
+    var element = document.getElementById(myParam);
+    
+    
+    console.log(element);
+    element.classList.add("active");
+}
+
+console.log('Hello');
+changeHeader();
+console.log('Done');
+
+</script>
+
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #3498DB;">
   <a class="navbar-brand" target="_blank">Covid Impact Analysis</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link disabled" href="http://localhost:8501">Home <span class="sr-only">(current)</span></a>
+    <ul class="nav navbar-nav">
+      <li class="nav-item active" id="home">
+        <a class="nav-link" href="http://localhost:8501?p=home">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="http://localhost:8501?p=analysis" >Analysis</a>
+      <li class="nav-item" id="traffic">
+        <a class="nav-link" href="http://localhost:8501?p=traffic">Traffic</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="http://localhost:8501?p=results">Results</a>
+      <li class="nav-item" id="power">
+        <a class="nav-link" href="http://localhost:8501?p=power">Power</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="http://localhost:8501?p=logs">Logs</a>
+      <li class="nav-item" id="well-being">
+        <a class="nav-link" href="http://localhost:8501?p=well-being">Well being</a>
+      </li>
+      <li class="nav-item" id="life-today">
+        <a class="nav-link" href="http://localhost:8501?p=life-today">Life Today</a>
+      </li>
+      <li class="nav-item" id="life-tomorrow">
+        <a class="nav-link" href="http://localhost:8501?p=life-tomorrow">Life Tomorrow</a>
       </li>
     </ul>
   </div>
@@ -67,7 +208,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-engagements, school_policy, mobilityGroups, mobility_policy, apple_mobility2020, apple_mobility2021 = load_data()
 def navigation():
     try:
         path = st.experimental_get_query_params()['p'][0]
@@ -76,257 +216,119 @@ def navigation():
         return None
     return path
 
+def plot_cases_data(cases):
+    buff, col, buff2 = st.columns([1, 3, 1])
+    col.header("How many cases have been registered in the United States?")
+
+def plot_vaccination_data(vaccines):
+    buff, col, buff2 = st.columns([1, 3, 1])
+    col.header("How many vaccines have been distributed in the United States?")
+    types_of_vaccines = col.multiselect("Types of Vaccine Doses",
+                                        ["Total Doses", "Moderna Doses", "Pfizer Doses", "Booster Doses",
+                                         "Johnson & Johnson Doses"], default=["Total Doses"])
+
+    vaccine_columns = types_of_vaccines
+    vaccine_columns.append('Date')
+    vaccines_filtered = vaccines[vaccine_columns]
+
+    fig = px.line(vaccines_filtered, x="Date", y=vaccine_columns, markers=True)
+    fig.layout.plot_bgcolor = '#0E1117'
+    fig.layout.paper_bgcolor = '#0E1117'
+    fig.update_xaxes(showgrid=False)
+    fig.update_yaxes(showgrid=False)
+    fig.update_layout(legend_title_text='Types of Vaccines',
+                      title='Number of Vaccines distributed per day (Smoothed over a week)',
+                      xaxis_title='Date',
+                      yaxis_title='No of Vaccines Administered (In Millions)')
+    col.plotly_chart(fig, use_container_width=True)
+
+
+# Loading the data from the cache
+cases, vaccines, mental_health_statewise, mental_health_nationwide, mental_health, apple_mobility_state, apple_mobility_time = load_data()
+
+
+def plot_mental_health(mental_health_statewise, mental_health, mental_health_nationwide):
+    buff, col, buff2 = st.columns([1, 3, 1])
+
+    types_of_groups = col.multiselect("Types of Groups", ['National Estimate', 'By Age', 'By Sex',
+                                         'By Race/Hispanic ethnicity', 'By Education'], default=["National Estimate"])
+
+    mental_health_nationwide_filtered = mental_health_nationwide[mental_health_nationwide['Group'].isin(types_of_groups)].rename(columns={"Time Period End Date":"Date"})
+
+    national_pivot = pd.pivot_table(
+        mental_health_nationwide_filtered[mental_health_nationwide_filtered["Indicator"] == 'Symptoms of Anxiety Disorder or Depressive Disorder'],
+        values='Value',
+        index='Date',
+        columns='Subgroup'
+    )
+
+    fig = px.line(national_pivot, title="Symptoms of Anxiety Disorder or Depressive Disorder Nationally", markers=True)
+    fig.update_xaxes(
+        tickformat='%d-%b-%Y',
+        tickangle=45,
+        showticklabels=True,
+        title="Date of Response",
+        gridwidth=0.5, gridcolor='lightslategray'
+    )
+    fig.update_yaxes(title='Percentage of Participants With Symptoms', gridwidth=0.5, gridcolor='lightslategray')
+    fig.update_layout(width=1000, height=500)
+    fig.layout.plot_bgcolor = '#0E1117'
+    fig.layout.paper_bgcolor = '#0E1117'
+    col.plotly_chart(fig, use_container_width=True)
+
+
+def plot_apple_data(apple_mobility_state, apple_mobility_time):
+    buff, col, buff2 = st.columns([1, 3, 1])
+    fig = px.line(apple_mobility_time.dropna(), x="month_year", y="transit", hover_data=['transit'])
+    fig.update_layout(title='Changes in transit patterns in the United States',
+                      xaxis_title='Time',
+                      yaxis_title='% change in transit from baseline')
+    col.plotly_chart(fig, use_container_width=True)
+
+    def df_to_plotly(df):
+        return {'z': df.values.tolist(),
+                'x': df.index.tolist(),
+                'y': df.columns.tolist()
+        }
+
+    apple_mobility_state = apple_mobility_state.set_index('month_year')
+    apple_mobility_state.columns = apple_mobility_state.columns.map(us_state_to_abbrev)
+    fig = go.Figure(
+        data=go.Heatmap(df_to_plotly(apple_mobility_state), type='heatmap', colorscale='rdbu'),
+        layout=go.Layout(width=600, height=1000,
+                         title="Percentage change in transit traffic compared to baseline (2019)"))
+
+    col.plotly_chart(fig, use_container_width=True)
+
 
 if navigation() == "home":
     st.title('Home')
     st.write('This is the home page.')
 
-elif navigation() == "results":
-    buff, col, buff2 = st.columns([1,3,1])
-    col.title("How has COVID affected the daily lives of people?")
-    col.markdown("On 17th November 2019 the first case of COVID-19 was detected. It has been almost two years since then and the world continues to change and adapt to the ever-evolving pandemic. These changes can be classfied as macro and micro level changes. The former refers to changes at a global scale whereas the latter refers to changes at an individual's scale. Macro level changes include the effects on global economy, trade and commerce. Such changes have been quantified and presented in numerous studies. However, the effects of COVID at a micro level are just as apparent and important. The pandemic has led to subtle and not-so-subtle adjustments in the daily routines of people. These adjustments will cumulate over time and lead to several social and psychological repercussions. This is a study to attempt to quantify these adjustments and discuss the possible implications. The visualizations have been ordered in a descending order according to impact. Thus the impact on the lives of children has been discussed first and we then go on to discuss the changes for adults.")
-    col.markdown("******")
-    col.header("How has COVID-19 affected the lives of children?")
-    col.markdown("To prevent the spread of infection, public schools were shut down all across the United States. Different schools were shut at different times in accordance with state policies.")
-
-    buff, col2, buff2 = st.columns([2,3,2])
-    slider = col2.slider('Move the slider below to view schools in states getting shut over the course of 2020.', min_value = dt.date(year=2020,month=3,day=10), max_value = dt.date(year=2020,month=4,day=4), format='MM-DD-YYYY')
-    school_policy = school_policy.dropna(subset=["date"])[['State Abbreviation','date']]
-    school_policy['Public Schools Closed'] = (pd.to_datetime(school_policy['date'], format='%d/%m/%y') < pd.to_datetime(slider)).astype('str')
-
-    # Plotting the closed states based on the selected date
-    fig = px.choropleth(school_policy,  # Input Pandas DataFrame
-                        locations="State Abbreviation",  # DataFrame column with locations  # DataFrame column with color values
-                        hover_name="State Abbreviation", # DataFrame column hover info
-                        locationmode = 'USA-states',
-                        color='Public Schools Closed',
-                       color_discrete_map={'True':'red',
-                                            'False':'blue'}) # Set to plot as US States
-    fig.add_scattergeo(name='State Names',
-        locations=school_policy['State Abbreviation'],
-        locationmode='USA-states',
-        text=school_policy['State Abbreviation'],
-        mode='text')
-    fig.update_layout( # Create a Title
-        geo_scope='usa',  # Plot only the USA instead of globe
-        geo=dict(bgcolor= 'rgba(0,0,0,0)',lakecolor='#4E5D6C'),
-        
-    )
-    buff, col, buff2 = st.columns([1,3,1])
-    col.plotly_chart(fig, use_container_width=True)
-
-    col.markdown("******")
-
-    buff, col, buff2 = st.columns([1,3,1])
-    col.header("How have schools adapted to these changes?")
-    tools = col.multiselect("Educational Tools", ["Zoom", "Google Classroom","Canvas","Schoology", "Google Docs", "Google Sheets", "Duolingo",  "Grammarly", "Quizlet","i-Ready"], default=["Duolingo", "Zoom"])
-
-    columns = tools
-    columns.append('time')
-    engagements_df = engagements[columns]
-    # Plotting the engagemnet data 
-    fig = px.line(engagements_df, x = "time", y = tools, markers=True)
-    fig.update_layout(geo=dict(bgcolor= 'rgba(0,0,0,0)'))
-    fig.update_traces(mode="markers+lines", hovertemplate=None)
-    fig.layout.plot_bgcolor = '#0E1117'
-    fig.layout.paper_bgcolor = '#0E1117'
-    fig.update_layout(legend_title_text='Educational tools', title='Usage of various Education tools during 2020',
-                       xaxis_title='Month',
-                       yaxis_title='Usage')
-    col.plotly_chart(fig, use_container_width=True)
-    col.markdown("Interestingly, one can clearly see the sharp or gradual rise in the usage of these tools around March and April. Another interesting observation is that Duolingo is the only tool that shows a sharp decline since March. This can be explained by the imposition of travel restrictions around that time.")
-    buff, col, buff2 = st.columns([1,3,1])
-    col.markdown("The long term impact of these changes is currently unknown and can merely be guessed. Both physical and mental development of children is bound to be affected. Increased screen time has become unavoidable and children are missing out on peer interactions that are vital for soft skills development. Another case to consider would be of infants who have spent the first 2 years of their lives completely indoors. ")
-    col.markdown("******")
-    col.header("What about adults?")
-    col.markdown("The government issued stay-at-home regulations to curb the growing number of cases. Different states issued orders at different times in as a reactionary response to the number of active cases.")
-    
+    plot_cases_data(cases)
+    plot_vaccination_data(vaccines)
 
 
-elif navigation() == "analysis":
-    buff, col2, buff2 = st.columns([2,3,2])
-    slider = col2.slider('Move the slider below to view states issuing stay-at-home orders over the course of 2020.', min_value = dt.date(year=2020,month=2,day=28), max_value = dt.date(year=2020,month=3,day=22), format='MM-DD-YYYY')
-    mobility_policy = mobility_policy.dropna(subset=["MobilityRestrictedDate"])[['State Abbreviation','MobilityRestrictedDate']]
-    mobility_policy['Stay at Home Policy declared'] = (pd.to_datetime(mobility_policy['MobilityRestrictedDate'], format='%m/%d/%Y') < pd.to_datetime(slider,errors='coerce')).astype('str')
+elif navigation() == "traffic":
+    st.title('Traffic')
+    st.write('This is the Traffic page.')
 
-    # Plotting the closed states based on the selected date
-    fig = px.choropleth(mobility_policy,  # Input Pandas DataFrame
-                        locations="State Abbreviation",  # DataFrame column with locations  # DataFrame column with color values
-                        hover_name="State Abbreviation", # DataFrame column hover info
-                        locationmode = 'USA-states',
-                        color='Stay at Home Policy declared',
-                       color_discrete_map={'True':'red',
-                                            'False':'blue'}) # Set to plot as US States
-    fig.add_scattergeo(name='State Names',
-        locations=mobility_policy['State Abbreviation'],
-        locationmode='USA-states',
-        text=school_policy['State Abbreviation'],
-        mode='text')
-    fig.update_layout(# Create a Title
-        geo_scope='usa',  # Plot only the USA instead of globe
-        geo=dict(bgcolor= 'rgba(0,0,0,0)',lakecolor='#4E5D6C'),
-        
-    )
-    buff, col, buff2 = st.columns([1,3,1])
-    col.plotly_chart(fig, use_container_width=True)
-    col.markdown("The daily activities of adults have changed quite a bit due to restrictions on movements in public areas. These changes can be tracked by measuring the percent change in frequency of commonly visited places. Workplaces were the first to shut and we see a large negative change from our baseline (pre-pandemic times). Parks were frequented more often and there was a sharp decline in mall visits.")
-    fig = make_subplots(rows=2, cols=2, start_cell="top-left", shared_yaxes=True)
+    plot_apple_data(apple_mobility_state, apple_mobility_time)
 
-    fig.add_trace(go.Scatter(x=mobilityGroups["date"].values,y=mobilityGroups["Workplaces"].values.tolist(), fill='tozeroy', name='Workplaces'),row=1, col=1)
-    fig.add_trace(go.Scatter( x=mobilityGroups["date"].values,y=mobilityGroups['Parks'].values.tolist(),fill='tozeroy', name='Parks'),row=1, col=2)
-    fig.add_trace(go.Scatter( x=mobilityGroups["date"].values,y=mobilityGroups['Grocery and Pharmacy'].values.tolist(),fill='tozeroy', name='Grocery and Pharmacy'),row=2, col=1)
-    fig.add_trace(go.Scatter( x=mobilityGroups["date"].values,y=mobilityGroups['Retail and Recreation'].values.tolist(), fill='tozeroy', name='Retail and Recreation'),row=2, col=2)
+elif navigation() == "power":
+    st.title('Power')
+    st.write('This is the Power page.')
 
-    fig.update_xaxes(title_text="Workplaces", row = 1, col = 1,showticklabels=True)
-    fig.update_xaxes(title_text="Parks", row = 1, col = 2,showticklabels=True)
-    fig.update_xaxes(title_text="Grocery and Pharmacy", row = 2, col = 1,showticklabels=True)
-    fig.update_xaxes(title_text="Retail and Recreation", row = 2, col = 2,showticklabels=True)
-
-    # Update yaxis properties
-    fig.update_yaxes(title_text="Percentage change", row=1, col=1,showticklabels=True)
-    fig.update_yaxes( row=1, col=2,showticklabels=True)
-    fig.update_yaxes(title_text="Percentage change", row=2, col=1,showticklabels=True)
-    fig.update_yaxes( row=2, col=2,showticklabels=True)
-
-    fig.update_xaxes(showline=True, linewidth=2, linecolor='black')
-    fig.update_layout(width=int(1500), height = int(750))
-    fig.update_layout(legend_title_text='Commonly Visited Places', title='Percentage Change in Frequency of commonly visited places compared to baseline (2019)')
-    # fig.update_yaxes(showline=True, linewidth=2, linecolor='black')
-    # fig = px.line(mobilityGroups, x='date' , y='value',color='variable')
-    fig.layout.plot_bgcolor = '#0E1117'
-    fig.layout.paper_bgcolor = '#0E1117'
-    st.plotly_chart(fig, use_container_width=True)
-    buff, col, buff2 = st.columns([1,3,1])
-    col.markdown("******")
+elif navigation() == "well-being":
+    st.title('Well being')
+    st.write('This is the Well being page.')
+    plot_mental_health(mental_health_statewise, mental_health, mental_health_nationwide)
 
 
-elif navigation() == "examples":
-    st.title('Examples Menu')
-    st.write('Select an example.')
+elif navigation() == "life-today":
+    st.title('Life Today')
+    st.write('This is the Life Today page.')
 
-
-elif navigation() == "logs":
-    def convert(month_idx):
-        return calendar.month_abbr[int(month_idx)]
-    def df_to_plotly(df):
-        x = df.columns.tolist()
-        x = list(map(convert, x))
-        return {'z': df.values.tolist(),
-                'x': x,
-                'y': df.index.tolist()}
-
-    buff, col, buff2 = st.columns([1,3,1])
-    col.markdown("******")
-    col.markdown("To look at the positive side of things, in response to schools shutting and stay-at-home orders being issued, transit traffic reduced significantly in 2020. This year as few workplaces opened up and restrictions have been eased, traffic levels have increased again. This can be seen in the heatmap below.")
-
-    buff, col, buff2 = st.columns([6,1,6])
-    yearOption = col.selectbox('Year',('2020','2021'))
-
-    if(yearOption == '2020'):
-        fig = go.Figure(
-                data=go.Heatmap(df_to_plotly(apple_mobility2020), type = 'heatmap', colorscale = 'rdbu'),
-                layout=go.Layout(width = 600,height = 1000, title="Percentage change in transit traffic compared to baseline (2019)"))
-    else:
-        fig = go.Figure(
-                data=go.Heatmap(df_to_plotly(apple_mobility2021), type = 'heatmap', colorscale = 'rdbu'),
-                layout=go.Layout(width = 600,height = 1000, title="Percentage change in transit traffic compared to baseline (2019)"))
-
-    buff, col, buff2 = st.columns([1,3,1])
-    col.plotly_chart(fig, use_container_width=True)
-    col.markdown("******")
-
-
-elif navigation() == "verify":
-    st.title('Data verification is started...')
-    st.write('Please stand by....')
-
-
-elif navigation() == "config":
-    st.title('Configuration of the app.')
-    st.write('Here you can configure the application')
-
-st.markdown('''# **Binance Price App**
-A simple cryptocurrency price app pulling price data from *Binance API*.
-''')
-
-st.header('**Selected Price**')
-
-# Load market data from Binance API
-df = pd.read_json('https://api.binance.com/api/v3/ticker/24hr')
-
-# Custom function for rounding values
-def round_value(input_value):
-    if input_value.values > 1:
-        a = float(round(input_value, 2))
-    else:
-        a = float(round(input_value, 8))
-    return a
-
-col1, col2, col3 = st.columns(3)
-
-# Widget (Cryptocurrency selection box)
-col1_selection = st.sidebar.selectbox('Price 1', df.symbol, list(df.symbol).index('BTCBUSD') )
-col2_selection = st.sidebar.selectbox('Price 2', df.symbol, list(df.symbol).index('ETHBUSD') )
-col3_selection = st.sidebar.selectbox('Price 3', df.symbol, list(df.symbol).index('BNBBUSD') )
-col4_selection = st.sidebar.selectbox('Price 4', df.symbol, list(df.symbol).index('XRPBUSD') )
-col5_selection = st.sidebar.selectbox('Price 5', df.symbol, list(df.symbol).index('ADABUSD') )
-col6_selection = st.sidebar.selectbox('Price 6', df.symbol, list(df.symbol).index('DOGEBUSD') )
-col7_selection = st.sidebar.selectbox('Price 7', df.symbol, list(df.symbol).index('SHIBBUSD') )
-col8_selection = st.sidebar.selectbox('Price 8', df.symbol, list(df.symbol).index('DOTBUSD') )
-col9_selection = st.sidebar.selectbox('Price 9', df.symbol, list(df.symbol).index('MATICBUSD') )
-
-# DataFrame of selected Cryptocurrency
-col1_df = df[df.symbol == col1_selection]
-col2_df = df[df.symbol == col2_selection]
-col3_df = df[df.symbol == col3_selection]
-col4_df = df[df.symbol == col4_selection]
-col5_df = df[df.symbol == col5_selection]
-col6_df = df[df.symbol == col6_selection]
-col7_df = df[df.symbol == col7_selection]
-col8_df = df[df.symbol == col8_selection]
-col9_df = df[df.symbol == col9_selection]
-
-# Apply a custom function to conditionally round values
-col1_price = round_value(col1_df.weightedAvgPrice)
-col2_price = round_value(col2_df.weightedAvgPrice)
-col3_price = round_value(col3_df.weightedAvgPrice)
-col4_price = round_value(col4_df.weightedAvgPrice)
-col5_price = round_value(col5_df.weightedAvgPrice)
-col6_price = round_value(col6_df.weightedAvgPrice)
-col7_price = round_value(col7_df.weightedAvgPrice)
-col8_price = round_value(col8_df.weightedAvgPrice)
-col9_price = round_value(col9_df.weightedAvgPrice)
-
-# Select the priceChangePercent column
-col1_percent = f'{float(col1_df.priceChangePercent)}%'
-col2_percent = f'{float(col2_df.priceChangePercent)}%'
-col3_percent = f'{float(col3_df.priceChangePercent)}%'
-col4_percent = f'{float(col4_df.priceChangePercent)}%'
-col5_percent = f'{float(col5_df.priceChangePercent)}%'
-col6_percent = f'{float(col6_df.priceChangePercent)}%'
-col7_percent = f'{float(col7_df.priceChangePercent)}%'
-col8_percent = f'{float(col8_df.priceChangePercent)}%'
-col9_percent = f'{float(col9_df.priceChangePercent)}%'
-
-# Create a metrics price box
-col1.metric(col1_selection, col1_price, col1_percent)
-col2.metric(col2_selection, col2_price, col2_percent)
-col3.metric(col3_selection, col3_price, col3_percent)
-col1.metric(col4_selection, col4_price, col4_percent)
-col2.metric(col5_selection, col5_price, col5_percent)
-col3.metric(col6_selection, col6_price, col6_percent)
-col1.metric(col7_selection, col7_price, col7_percent)
-col2.metric(col8_selection, col8_price, col8_percent)
-col3.metric(col9_selection, col9_price, col9_percent)
-
-st.header('**All Price**')
-st.dataframe(df)
-
-st.info('Credit: Created by Chanin Nantasenamat (aka [Data Professor](https://youtube.com/dataprofessor/))')
-
-st.markdown("""
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-""", unsafe_allow_html=True)
-
+elif navigation() == "life-tomorrow":
+    st.title('Life Tomorrow')
+    st.write('This is the Life Tomorrow page.')
