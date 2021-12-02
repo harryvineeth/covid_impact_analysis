@@ -139,6 +139,10 @@ states = {
 
 st.set_page_config(layout="wide")
 
+st.markdown(
+    """<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    """,
+    unsafe_allow_html=True)
 
 @st.cache
 def load_data():
@@ -153,29 +157,9 @@ def load_data():
     return cases, vaccines, mental_health_statewise, mental_health_nationwide, mental_health, apple_mobility_state, apple_mobility_time
 
 
-st.markdown(
-    '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">',
-    unsafe_allow_html=True)
 
 st.markdown("""
 
-<script language="javascript">
-
-function changeHeader() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const myParam = urlParams.get('p');
-    var element = document.getElementById(myParam);
-    
-    
-    console.log(element);
-    element.classList.add("active");
-}
-
-console.log('Hello');
-changeHeader();
-console.log('Done');
-
-</script>
 
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #3498DB;">
   <a class="navbar-brand" target="_blank">Covid Impact Analysis</a>
@@ -187,19 +171,19 @@ console.log('Done');
       <li class="nav-item active" id="home">
         <a class="nav-link" href="http://localhost:8501?p=home">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item" id="traffic">
+      <li class="nav-item active" id="traffic">
         <a class="nav-link" href="http://localhost:8501?p=traffic">Traffic</a>
       </li>
-      <li class="nav-item" id="power">
+      <li class="nav-item active" id="power">
         <a class="nav-link" href="http://localhost:8501?p=power">Power</a>
       </li>
-      <li class="nav-item" id="well-being">
+      <li class="nav-item active" id="well-being">
         <a class="nav-link" href="http://localhost:8501?p=well-being">Well being</a>
       </li>
-      <li class="nav-item" id="life-today">
+      <li class="nav-item active" id="life-today">
         <a class="nav-link" href="http://localhost:8501?p=life-today">Life Today</a>
       </li>
-      <li class="nav-item" id="life-tomorrow">
+      <li class="nav-item active" id="life-tomorrow">
         <a class="nav-link" href="http://localhost:8501?p=life-tomorrow">Life Tomorrow</a>
       </li>
     </ul>
