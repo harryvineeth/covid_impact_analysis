@@ -271,14 +271,14 @@ def plot_apple_data(apple_mobility_state, apple_mobility_time):
 
     def df_to_plotly(df):
         return {'z': df.values.tolist(),
-                'x': df.index.tolist(),
-                'y': df.columns.tolist()
+                'x': df.columns.tolist(),
+                'y': df.index.tolist()
         }
 
     apple_mobility_state = apple_mobility_state.set_index('month_year')
     apple_mobility_state.columns = apple_mobility_state.columns.map(us_state_to_abbrev)
     fig = go.Figure(
-        data=go.Heatmap(df_to_plotly(apple_mobility_state), type='heatmap', colorscale='rdbu'),
+        data=go.Heatmap(df_to_plotly(apple_mobility_state.T), type='heatmap', colorscale='rdbu'),
         layout=go.Layout(width=600, height=1000,
                          title="Percentage change in transit traffic compared to baseline (2019)"))
 
