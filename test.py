@@ -259,6 +259,21 @@ def plot_mental_health(mental_health_statewise, mental_health, mental_health_nat
     fig.layout.plot_bgcolor = '#0E1117'
     fig.layout.paper_bgcolor = '#0E1117'
     col.plotly_chart(fig, use_container_width=True)
+    
+    state_pivot = pd.pivot_table(
+        mental_health_statewise, 
+        values= 'Value', 
+        index = 'Time Period End Date', 
+        columns = 'State')
+_
+    fig2 = go.Figure(data=go.Heatmap(df_to_plotly(state_pivot.T), type='heatmap', colorscale='blues'))
+
+    fig2.update_layout(
+        width=600, height=1000,
+        title='Symptoms of Anxiety or Depression by State'
+        )
+
+    col.plotly_chart(fig2, use_container_width=True)
 
 
 def plot_apple_data(apple_mobility_state, apple_mobility_time):
