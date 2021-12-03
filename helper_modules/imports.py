@@ -151,5 +151,7 @@ def load_data():
     mental_health = pd.read_csv("cleaned/final_transformations/df_mental.csv")
     apple_mobility_state = pd.read_csv("cleaned/final_transformations/apple_mobility_states.csv")
     apple_mobility_time = pd.read_csv("cleaned/final_transformations/apple_mobility_time.csv")
-    return cases, vaccines, mental_health_statewise, mental_health_nationwide, mental_health, apple_mobility_state, apple_mobility_time
-
+    google_national_data = pd.read_csv('cleaned/googleNational.csv')
+    google_state_data = pd.read_csv('cleaned/googleState.csv').set_index('sub_region_1')
+    
+    return cases, vaccines, mental_health_statewise, mental_health_nationwide, mental_health, apple_mobility_state, apple_mobility_time, google_national_data, google_state_data

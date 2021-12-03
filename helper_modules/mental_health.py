@@ -40,7 +40,7 @@ def plot_mental_health(mental_health_statewise, mental_health, mental_health_nat
         values= 'Value', 
         index = 'Time Period End Date', 
         columns = 'State')
-_
+
     fig2 = go.Figure(data=go.Heatmap(df_to_plotly(state_pivot.T), type='heatmap', colorscale='blues'))
 
     fig2.update_layout(

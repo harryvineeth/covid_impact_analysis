@@ -46,7 +46,7 @@ st.markdown("""
 </nav>
 """, unsafe_allow_html=True)
 
-cases, vaccines, mental_health_statewise, mental_health_nationwide, mental_health, apple_mobility_state, apple_mobility_time = load_data()
+cases, vaccines, mental_health_statewise, mental_health_nationwide, mental_health, apple_mobility_state, apple_mobility_time, google_national_data, google_state_data = load_data()
 
 def navigation():
     try:
@@ -58,7 +58,7 @@ def navigation():
 
 
 # Loading the data from the cache
-cases, vaccines, mental_health_statewise, mental_health_nationwide, mental_health, apple_mobility_state, apple_mobility_time = load_data()
+cases, vaccines, mental_health_statewise, mental_health_nationwide, mental_health, apple_mobility_state, apple_mobility_time, google_national_data, google_state_data = load_data()
 
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------
@@ -77,10 +77,7 @@ if navigation() == "home":
     run_home(cases, vaccines)
 
 elif navigation() == "traffic":
-    st.title('Traffic')
-    st.write('This is the Traffic page.')
-
-    plot_apple_data(apple_mobility_state, apple_mobility_time)
+    run_mobility(apple_mobility_state, apple_mobility_time, google_national_data, google_state_data)
 
 elif navigation() == "power":
     run_power()
