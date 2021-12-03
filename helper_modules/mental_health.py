@@ -33,6 +33,8 @@ def plot_mental_health(mental_health_statewise, mental_health, mental_health_nat
     fig.update_layout(width=1000, height=500)
     fig.layout.plot_bgcolor = '#0E1117'
     fig.layout.paper_bgcolor = '#0E1117'
+    fig.update_xaxes(showgrid=False, zeroline=False)
+    fig.update_yaxes(showgrid=False, zeroline=False)
     col.plotly_chart(fig, use_container_width=True)
 
     state_pivot = pd.pivot_table(

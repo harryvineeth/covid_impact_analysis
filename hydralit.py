@@ -17,9 +17,9 @@ st.set_page_config(layout='wide',initial_sidebar_state='collapsed',)
 menu_data = [
     {'id':'traffic','icon': "🚦", 'label':"Traffic"},
     {'id':'power','icon': "⚡", 'label':"Power"},
-    {'id':'well-being','icon':"🎗",'label':"Well-Being"},
-    {'id':'life-today','icon':"🦠",'label':"Life-Today"},
-    {'id':'life-tomorrow','icon':"❓",'label':"Life-Tomorrow"},
+    {'id':'well-being','icon':"🎗",'label':"Well Being"},
+    {'id':'life-today','icon':"🦠",'label':"Life Today"},
+    {'id':'life-tomorrow','icon':"❓",'label':"Life Tomorrow"},
     # {'icon': "fa-solid fa-radar",'label':"Dropdown1", 'submenu':[{'id':' subid11','icon': "fa fa-paperclip", 'label':"Sub-item 1"},{'id':'subid12','icon': "💀", 'label':"Sub-item 2"},{'id':'subid13','icon': "fa fa-database", 'label':"Sub-item 3"}]},
     # {'icon': "far fa-chart-bar", 'label':"Chart"},#no tooltip message
     # {'id':' Crazy return value 💀','icon': "💀", 'label':"Calendar"},
@@ -39,9 +39,7 @@ menu_id = hc.nav_bar(
     sticky_mode='pinned', #jumpy or not-jumpy, but sticky or pinned
 )
 
-if st.button('click me'):
-  st.info('You clicked at: {}'.format(datetime.datetime.now()))
-
+st.title("Covid Data Analysis")
 
 if st.sidebar.button('click me too'):
   st.info('You clicked at: {}'.format(datetime.datetime.now()))
@@ -49,14 +47,15 @@ if st.sidebar.button('click me too'):
 #get the id of the menu item clicked
 st.info(f"{menu_id}")
 
-cases, vaccines, mental_health_statewise, mental_health_nationwide, mental_health, apple_mobility_state, apple_mobility_time, google_national_data, google_state_data = load_data()
+cases, vaccines, mental_health_statewise, mental_health_nationwide, mental_health, apple_mobility_state, \
+apple_mobility_time, google_national_data, google_state_data, mobility_policy, mobility_groups = load_data()
 
 
 if menu_id == "Home":
-    run_home(cases, vaccines)
+    run_home(cases, vaccines, mobility_policy)
 
 elif menu_id == "traffic":
-    run_mobility(apple_mobility_state, apple_mobility_time, google_national_data, google_state_data)
+    run_mobility(apple_mobility_state, apple_mobility_time, google_national_data, google_state_data, mobility_groups)
 
 elif menu_id == "power":
     run_power()
