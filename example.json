@@ -1,0 +1,114 @@
+
+{
+    "title": {
+        "media": {
+          "url": "https://assets.weforum.org/editor/KW2OKqVDPZ4AvmdcSj-1Jp4yjUpBnNtXKq5yZpU6kvY.gif",
+          "caption": "",
+          "credit": ""
+        },
+        "text": {
+          "headline": "COVID Timeline",
+          "text": "<p>The dates that impacted us the most.</p>"
+        }
+    },
+    "events": [
+      {
+        "media": {
+          "url": "https://ca-times.brightspotcdn.com/dims4/default/8735145/2147483647/strip/true/crop/600x338+0+0/resize/840x473!/format/webp/quality/90/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F47%2F7e%2Fb537393e4060861fdd09936f3f92%2Fsd-photos-handouts-2sars-cov-2-video.gif",
+          "caption": ""
+        },
+        "start_date": {
+          "year": "2019",
+          "month":"12"
+        },
+        "text": {
+          "headline": "The first case of COVID-19 in the world.",
+          "text": "<p>A cluster of patients in Wuhan, Hubei Providence, China begin to experience shortness of breath and fever. The World Health Organization China Country Office is informed of a number cases of pneumonia of unknown etiology (unknown cause) detected in Wuhan, Hubei Province. All cases connected to the Huanan Seafood Wholesale Market in Wuhan.</p>"
+        }
+      },
+      {
+        "media": {
+          "url": "https://static01.nyt.com/images/2020/06/25/multimedia/us-coronavirus-spread-promo-wider/us-coronavirus-spread-promo-wider-facebookJumbo.jpg",
+          "caption": ""
+        },
+        "start_date": {
+          "year": "2020",
+          "month":"1"
+        },
+        "text": {
+          "headline": "The first case of COVID-19 in the United States",
+          "text": "<p>On January 19, a man who had returned home to Snohomish County, Washington near Seattle on January 15, after traveling to Wuhan, checked into an urgent care clinic after seeing reports about the outbreak. Experiencing a cough, fever, nausea and vomiting, the Centers for Disease Control announced on January 21 that the 35-year-old had tested positive for COVID-19. </p>"
+        }
+      },
+      {
+        "media": {
+          "url": "https://i.guim.co.uk/img/media/a45390bb33f97e3c48810a16069cd1c499d71b79/0_221_3821_2294/master/3821.jpg?width=1200&quality=85&auto=format&fit=max&s=424586d981d09d35d676f1b33e71b4ac",
+          "caption": ""
+        },
+        "start_date": {
+          "year": "2020",
+          "month":"3"
+        },
+        "text": {
+          "headline": "The World Health Organisation declares COVID-19 a pandemic.",
+          "text": "<p>The World Health Organization declared the novel coronavirus outbreak a pandemic. There were 118,000 cases, more than 4,000 deaths, the agency said, and the virus had found a foothold on every continent except for Antarctica. The WHO Director-General said that never before has a pandemic been sparked by a coronavirus. And never before has a pandemic been seen that can be controlled.</p>"
+        }
+      },
+      {
+        "media": {
+          "url": "https://s.abcnews.com/images/International/coronavirus-11-gty-er-200323_hpMain_16x9_1600.jpg",
+          "caption": ""
+        },
+        "start_date": {
+          "year": "2020",
+          "month":"3"
+        },
+        "text": {
+          "headline": "The United States begins to shutdown.",
+          "text": "<p>President Donald J. Trump declares a nationwide emergency. U.S. states begin to shut down to prevent the spread of COVID-19. New York City public schools system (the largest school system in the U.S., with 1.1 million students) shuts down, while Ohio calls for restaurants and bars to close.</p>"
+        }
+      },
+      {
+        "media": {
+          "url": "https://media-cldnry.s-nbcnews.com/image/upload/t_fit-2000w,f_auto,q_auto:best/newscms/2020_22/3365341/200526-coronavirus-brooklyn-nyc-ac-1159p.jpg",
+          "caption": ""
+        },
+        "start_date": {
+          "year": "2020",
+          "month":"5"
+        },
+        "text": {
+          "headline": "COVID-19 death toll surpasses 100,000 for the United States.",
+          "text": "<p>The United States surpassed 100,000 coronavirus deaths as of Wednesday afternoon, according to NBC News' count, becoming the first country to reach the grim milestone. The U.S. leads the world in both deaths and confirmed cases, with 1.69 million infections. Among the infected are more than 62,000 doctors, nurses and other health care providers on the front lines of the COVID-19 response, the Centers for Disease Control and Prevention reported. At least 291 have died.</p>"
+        }
+      },
+      {
+        "media": {
+          "url": "https://cdn.dnaindia.com/sites/default/files/styles/full/public/2020/12/19/944544-covid-vaccine.jpg",
+          "caption": ""
+        },
+        "start_date": {
+          "year": "2020",
+          "month":"12"
+        },
+        "text": {
+          "headline": "The first COVID-19 vaccine administered in the United States.",
+          "text": "<p>Sandra Lindsay, a nurse in New York, becomes the first American outside a clinical trial to receive the COVID-19 vaccine.</p>"
+        }
+      },
+      {
+        "media": {
+          "url": "https://api.time.com/wp-content/uploads/2021/04/covid-19-vaccination.jpg",
+          "caption": ""
+        },
+        "start_date": {
+          "year": "2021",
+          "month":"3"
+        },
+        "text": {
+          "headline": "The United States surpasses 100 million vaccinations administered.",
+          "text": "<p>The United States surpassed a significant milestone toward ending the COVID-19 pandemic with more than 100 million people having received at least one vaccine dose, according to data from the Centers for Disease Control and Prevention."
+        }
+      }
+    ]
+}
