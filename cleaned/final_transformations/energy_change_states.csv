@@ -1,0 +1,121 @@
+,state_name,month,change,Change type
+0,New Hampshire,1,-3.144567082878999,Positive
+1,New Hampshire,2,6.281499918442339,Positive
+2,New Hampshire,3,-6.3690752914289686,Positive
+3,New Hampshire,4,-59.36916328672643,Positive
+4,New Hampshire,5,2.7513498751745304,Positive
+5,New Hampshire,6,-14.812107009249614,Positive
+6,New Hampshire,7,-2.572895807264576,Positive
+7,New Hampshire,8,-9.197054382594128,Positive
+8,New Hampshire,9,4.471127162631635,Positive
+9,New Hampshire,10,-11.294001330098313,Positive
+10,New Hampshire,11,-3.1473818147345214,Positive
+11,New Hampshire,12,-12.204251881867636,Positive
+12,Kentucky,1,-18.22789787164781,Positive
+13,Kentucky,2,-7.07977574630491,Positive
+14,Kentucky,3,-31.104469000833834,Positive
+15,Kentucky,4,-14.570035930065986,Positive
+16,Kentucky,5,-19.824328179774835,Positive
+17,Kentucky,6,-4.780289899209928,Positive
+18,Kentucky,7,4.840331994402758,Positive
+19,Kentucky,8,-3.8813960872051343,Positive
+20,Kentucky,9,-29.476147042940564,Positive
+21,Kentucky,10,-16.878581644919176,Positive
+22,Kentucky,11,-4.946670792856496,Positive
+23,Kentucky,12,7.053911003238282,Positive
+24,Indiana,1,-23.91182751863227,Positive
+25,Indiana,2,-15.557758373325791,Positive
+26,Indiana,3,-23.96176118771868,Positive
+27,Indiana,4,-23.388390632747395,Positive
+28,Indiana,5,-22.29653723851334,Positive
+29,Indiana,6,4.1085125696658,Positive
+30,Indiana,7,-9.633420207766251,Positive
+31,Indiana,8,3.3199043648468853,Positive
+32,Indiana,9,-9.586463559906615,Positive
+33,Indiana,10,-5.411984029936811,Positive
+34,Indiana,11,-20.252607680767703,Positive
+35,Indiana,12,5.38420158905325,Positive
+36,Tennessee,1,-1.143537502532838,Positive
+37,Tennessee,2,15.00586163547631,Positive
+38,Tennessee,3,-10.719444785827342,Positive
+39,Tennessee,4,-14.866751820914365,Positive
+40,Tennessee,5,-31.61446408027172,Positive
+41,Tennessee,6,8.510660265952094,Positive
+42,Tennessee,7,5.411112756007117,Positive
+43,Tennessee,8,1.1142943778524357,Positive
+44,Tennessee,9,-4.291583463942,Positive
+45,Tennessee,10,15.993480012291286,Positive
+46,Tennessee,11,-14.033329707595902,Positive
+47,Tennessee,12,8.471437456640048,Positive
+48,Massachusetts,1,-23.38257096963448,Positive
+49,Massachusetts,2,-26.514637278732845,Positive
+50,Massachusetts,3,-57.88433341905916,Positive
+51,Massachusetts,4,-45.09272351297643,Positive
+52,Massachusetts,5,-43.29793146731832,Positive
+53,Massachusetts,6,5.78514159992565,Positive
+54,Massachusetts,7,1.443437254235306,Positive
+55,Massachusetts,8,10.127535919264268,Positive
+56,Massachusetts,9,7.929114893820777,Positive
+57,Massachusetts,10,20.774871680313492,Positive
+58,Massachusetts,11,-8.708408665901631,Positive
+59,Massachusetts,12,-9.333972063283474,Positive
+0,Rhode Island,1,19.500965722663068,Negative
+1,Rhode Island,2,59.673575784692304,Negative
+2,Rhode Island,3,13.215692928378864,Negative
+3,Rhode Island,4,16.496292873901087,Negative
+4,Rhode Island,5,6.3569602420953775,Negative
+5,Rhode Island,6,52.20628990459685,Negative
+6,Rhode Island,7,1.4311133559948068,Negative
+7,Rhode Island,8,-5.180760036187386,Negative
+8,Rhode Island,9,38.624025848713934,Negative
+9,Rhode Island,10,-16.413346293695337,Negative
+10,Rhode Island,11,35.02724851929594,Negative
+11,Rhode Island,12,32.884443017598336,Negative
+12,New Mexico,1,8.348848945393986,Negative
+13,New Mexico,2,-11.93928508105092,Negative
+14,New Mexico,3,18.20279171835425,Negative
+15,New Mexico,4,-1.3001862631080634,Negative
+16,New Mexico,5,1.7743390619765358,Negative
+17,New Mexico,6,3.226217850111055,Negative
+18,New Mexico,7,1.156936103526533,Negative
+19,New Mexico,8,-4.861494036496023,Negative
+20,New Mexico,9,1.042485168780504,Negative
+21,New Mexico,10,-23.656795696094616,Negative
+22,New Mexico,11,-19.35747243296733,Negative
+23,New Mexico,12,-4.121291576783897,Negative
+24,Nevada,1,-0.2060496527277569,Negative
+25,Nevada,2,-1.441075891073294,Negative
+26,Nevada,3,6.036522017979867,Negative
+27,Nevada,4,6.094212757623898,Negative
+28,Nevada,5,10.277312556767171,Negative
+29,Nevada,6,0.615568965124313,Negative
+30,Nevada,7,-1.0273009488338176,Negative
+31,Nevada,8,-0.957541366150543,Negative
+32,Nevada,9,4.9403760864451405,Negative
+33,Nevada,10,8.652013226695765,Negative
+34,Nevada,11,-12.384350251508176,Negative
+35,Nevada,12,-2.7484501819106044,Negative
+36,Washington,1,9.213569648814552,Negative
+37,Washington,2,28.992889612382605,Negative
+38,Washington,3,13.520144141251617,Negative
+39,Washington,4,-2.6735396462568106,Negative
+40,Washington,5,9.106679166342008,Negative
+41,Washington,6,11.697594450524802,Negative
+42,Washington,7,9.402642251195624,Negative
+43,Washington,8,-0.8227318527449431,Negative
+44,Washington,9,7.981970225832674,Negative
+45,Washington,10,12.048883863222224,Negative
+46,Washington,11,4.772009873880196,Negative
+47,Washington,12,8.473437912048524,Negative
+48,Virginia,1,8.159854341836741,Negative
+49,Virginia,2,5.539929602592824,Negative
+50,Virginia,3,19.01618617939785,Negative
+51,Virginia,4,21.717180717618746,Negative
+52,Virginia,5,11.991303194644605,Negative
+53,Virginia,6,-4.925547973714366,Negative
+54,Virginia,7,5.760905467097032,Negative
+55,Virginia,8,0.9714234973778632,Negative
+56,Virginia,9,-3.383439841024604,Negative
+57,Virginia,10,12.269597645913263,Negative
+58,Virginia,11,6.789882507197981,Negative
+59,Virginia,12,2.019236365765451,Negative
