@@ -56,9 +56,7 @@ def navigation():
 
 
 # Loading the data from the cache
-cases, vaccines, mental_health_statewise, mental_health_nationwide, mental_health, apple_mobility_state, \
-apple_mobility_time, google_national_data, google_state_data, mobility_policy, mobility_groups, cases_groups = load_data()
-
+cases, vaccines, mental_health_statewise, mental_health_nationwide, mental_health, apple_mobility_state, apple_mobility_time, google_national_data, google_state_data, mobility_policy, mobility_groups, cases_groups, energy_change_states_negative, energy_change_states_positive, energy_change_states, energy_change_states_heatmap = load_data()
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------
 #                                                                NAVIGATION
