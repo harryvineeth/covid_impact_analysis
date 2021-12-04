@@ -11,7 +11,7 @@ from helper_modules.power import *
 from helper_modules.mobility import *
 
 #make it look nice from the start
-st.set_page_config(layout='wide',initial_sidebar_state='collapsed',)
+st.set_page_config(layout='wide', initial_sidebar_state='collapsed',)
 
 # specify the primary menu definition
 menu_data = [
@@ -20,7 +20,7 @@ menu_data = [
     {'id':'well-being','icon':"🎗",'label':"Well Being"},
     {'id':'life-today','icon':"🦠",'label':"Life Today"},
     {'id':'life-tomorrow','icon':"❓",'label':"Life Tomorrow"},
-    # {'icon': "fa-solid fa-radar",'label':"Dropdown1", 'submenu':[{'id':' subid11','icon': "fa fa-paperclip", 'label':"Sub-item 1"},{'id':'subid12','icon': "💀", 'label':"Sub-item 2"},{'id':'subid13','icon': "fa fa-database", 'label':"Sub-item 3"}]},
+     {'icon': "fa-solid fa-radar",'label':"Dropdown1", 'submenu':[{'id':' subid11','icon': "fa fa-paperclip", 'label':"Sub-item 1"},{'id':'subid12','icon': "💀", 'label':"Sub-item 2"},{'id':'subid13','icon': "fa fa-database", 'label':"Sub-item 3"}]},
     # {'icon': "far fa-chart-bar", 'label':"Chart"},#no tooltip message
     # {'id':' Crazy return value 💀','icon': "💀", 'label':"Calendar"},
     # {'icon': "fas fa-tachometer-alt", 'label':"Dashboard",'ttip':"I'm the Dashboard tooltip!"}, #can add a tooltip message
@@ -28,8 +28,8 @@ menu_data = [
     # {'icon': "fa-solid fa-radar",'label':"Dropdown2", 'submenu':[{'label':"Sub-item 1", 'icon': "fa fa-meh"},{'label':"Sub-item 2"},{'icon':'🙉','label':"Sub-item 3",}]},
 ]
 
-#over_theme = {'txc_inactive': '#FFFFFF','menu_background':'red','txc_active':'yellow','option_active':'blue'}
-over_theme = {'txc_inactive': '#FFFFFF','menu_background':'blue'}
+#over_theme = {'txc_inactive': '#FFFFFF', 'menu_background':'red','txc_active':'yellow','option_active':'blue'}
+over_theme = {'txc_inactive': '#FFFFFF', 'menu_background': 'blue'}
 menu_id = hc.nav_bar(
     menu_definition=menu_data,
     override_theme=over_theme,

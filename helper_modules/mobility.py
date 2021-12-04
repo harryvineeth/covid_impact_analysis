@@ -18,6 +18,16 @@ def plot_apple_data(apple_mobility_state, apple_mobility_time):
     fig.layout.paper_bgcolor = '#0E1117'
     fig.update_xaxes(showgrid=False, zeroline=False)
     fig.update_yaxes(showgrid=False, zeroline=False)
+    fig.add_shape(type="rect",
+                  xref="x",
+                  yref="paper",
+                  x0=10.5,
+                  y0=0,
+                  x1=12.5,
+                  y1=1,
+                  line=dict(color="rgba(0,0,0,0)",width=3,),
+                  fillcolor='rgba(255,0,0,0.2)',
+                  layer='below')
     col.plotly_chart(fig, use_container_width=True)
 
     buff, col, buff2 = st.columns([5, 2, 5])

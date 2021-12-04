@@ -1,10 +1,12 @@
 from helper_modules.imports import *
 
+
 def run_mental_health(mental_health_statewise, mental_health, mental_health_nationwide):
     st.title('Well being')
     st.write('This is the Well being page.')
 
     plot_mental_health(mental_health_statewise, mental_health, mental_health_nationwide)
+
 
 def plot_mental_health(mental_health_statewise, mental_health, mental_health_nationwide):
     buff, col, buff2 = st.columns([1, 3, 1])
@@ -20,8 +22,13 @@ def plot_mental_health(mental_health_statewise, mental_health, mental_health_nat
         index='Date',
         columns='Subgroup'
     )
-
     fig = px.line(national_pivot, title="Symptoms of Anxiety Disorder or Depressive Disorder Nationally", markers=True)
+    fig.add_hline(y=20, line_dash="dot",
+                  annotation_text="2019 baseline",
+                  annotation_position="bottom right",
+                  annotation_font_size=15,
+                  annotation_font_color="white"
+                  )
     fig.update_xaxes(
         tickformat='%d-%b-%Y',
         tickangle=45,
@@ -30,7 +37,7 @@ def plot_mental_health(mental_health_statewise, mental_health, mental_health_nat
         gridwidth=0.5, gridcolor='lightslategray'
     )
     fig.update_yaxes(title='Percentage of Participants With Symptoms', gridwidth=0.5, gridcolor='lightslategray')
-    fig.update_layout(width=1000, height=500)
+    fig.update_layout(width=1000, height=500, yaxis_range=[10, 60])
     fig.layout.plot_bgcolor = '#0E1117'
     fig.layout.paper_bgcolor = '#0E1117'
     fig.update_xaxes(showgrid=False, zeroline=False)

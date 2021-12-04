@@ -56,7 +56,8 @@ def navigation():
 
 
 # Loading the data from the cache
-cases, vaccines, mental_health_statewise, mental_health_nationwide, mental_health, apple_mobility_state, apple_mobility_time, google_national_data, google_state_data = load_data()
+cases, vaccines, mental_health_statewise, mental_health_nationwide, mental_health, apple_mobility_state, \
+apple_mobility_time, google_national_data, google_state_data, mobility_policy, mobility_groups, cases_groups = load_data()
 
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------
@@ -67,15 +68,15 @@ def navigation():
     try:
         path = st.experimental_get_query_params()['p'][0]
     except Exception as e:
-        st.error('Please use the main app.')
-        return None
+        path = 'home'
     return path
 
+
 if navigation() == "home":
-    run_home(cases, vaccines)
+    run_home(cases, vaccines, mobility_policy, cases_groups)
 
 elif navigation() == "traffic":
-    run_mobility(apple_mobility_state, apple_mobility_time, google_national_data, google_state_data)
+    run_mobility(apple_mobility_state, apple_mobility_time, google_national_data, google_state_data, mobility_groups)
 
 elif navigation() == "power":
     run_power()
@@ -88,3 +89,6 @@ elif navigation() == "life-today":
 
 elif navigation() == "life-tomorrow":
     run_life_tomorrow()
+
+else:
+    run_home(cases, vaccines, mobility_policy, cases_groups)

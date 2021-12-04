@@ -1,8 +1,30 @@
 from helper_modules.imports import *
 
 
-def plot_cases_data(cases):
-    pass
+def plot_cases_data(cases, cases_groups):
+
+    buff, col, buff2 = st.columns([1, 3, 1])
+    fig = px.line(cases_groups, x="month_year", y="Cases", hover_data=['Cases'], markers=True)
+    fig.update_layout(title='Number of Cases registered in the United States',
+                      xaxis_title='Time',
+                      yaxis_title='Sum of Cases per month')
+    fig.layout.plot_bgcolor = '#0E1117'
+    fig.layout.paper_bgcolor = '#0E1117'
+    fig.update_xaxes(showgrid=False, zeroline=False)
+    fig.update_yaxes(showgrid=False, zeroline=False)
+    fig.add_shape(type="rect",
+                  xref="x",
+                  yref="paper",
+                  x0=10.5,
+                  y0=0,
+                  x1=12.5,
+                  y1=1,
+                  line=dict(color="rgba(0,0,0,0)", width=3, ),
+                  fillcolor='rgba(255,0,0,0.2)',
+                  layer='below')
+    col.plotly_chart(fig, use_container_width=True)
+
+
     buff, col, buff2 = st.columns([1, 3, 1])
     col.header("How many cases have been registered in the United States?")
     cases_filtered = cases
@@ -82,6 +104,16 @@ def plot_vaccination_data(vaccines):
     fig = px.line(vaccines_filtered, x="Date", y=vaccine_columns)
     fig.layout.plot_bgcolor = '#0E1117'
     fig.layout.paper_bgcolor = '#0E1117'
+    fig.add_shape(type="rect",
+                  xref="x",
+                  yref="paper",
+                  x0=0,
+                  y0=0,
+                  x1=1,
+                  y1=1,
+                  line=dict(color="rgba(0,0,0,0)", width=3, ),
+                  fillcolor='rgba(255,0,0,0.2)',
+                  layer='below')
     fig.update_xaxes(showgrid=False, zeroline=False)
     fig.update_yaxes(showgrid=False, zeroline=False)
     fig.update_layout(legend_title_text='Types of Vaccines',

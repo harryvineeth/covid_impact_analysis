@@ -146,6 +146,7 @@ def df_to_plotly(df):
 @st.cache(allow_output_mutation=True)
 def load_data():
     cases = pd.read_csv("cleaned/final_transformations/cleaned_cases.csv")
+    cases_groups = pd.read_csv("cleaned/final_transformations/cleaned_case_groups.csv")
     vaccines = pd.read_csv("cleaned/final_transformations/cleaned_vaccinations.csv")
 
     mental_health_statewise = pd.read_csv("cleaned/final_transformations/df_mental_by_state_clean.csv")
@@ -159,4 +160,4 @@ def load_data():
     mobility_groups = pd.read_csv("cleaned/cleaned_formatted_mobility.csv")
 
     return cases, vaccines, mental_health_statewise, mental_health_nationwide, mental_health, apple_mobility_state, \
-           apple_mobility_time, google_national_data, google_state_data, mobility_policy, mobility_groups
+           apple_mobility_time, google_national_data, google_state_data, mobility_policy, mobility_groups, cases_groups
