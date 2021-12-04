@@ -29,25 +29,23 @@ def plot_mental_health(mental_health_statewise, mental_health, mental_health_nat
                   annotation_font_size=15,
                   annotation_font_color="white"
                   )
-    fig.add_shape(type="rect",
-                   xref="x",
-                   yref="paper",
-                   x0="2020-11-15",
-                   y0=0,
+    fig.add_hline(y=10)
+    fig.add_vrect(x0="2020-11-15",
                    x1="2021-01-15",
-                   y1=1,
-                   line=dict(color="rgba(0,0,0,0)", width=3, ),
-                   fillcolor='rgba(255,0,0,0.2)',
-                   layer='below')
+                  annotation_text="     Covid Cases Peak", annotation_position="top left",
+                  fillcolor="green", opacity=0.25, line_width=0)
+    fig.add_vrect(x0="2021-06-01",
+                  x1="2021-07-01",
+                  annotation_text="Delta Variant Starts", annotation_position="top left",
+                  fillcolor="green", opacity=0.25, line_width=0)
+
     fig.update_xaxes(
-        tickformat='%d-%b-%Y',
-        tickangle=45,
+        tickformat='%b %Y',
         showticklabels=True,
         title="Date of Response",
         gridwidth=0.5, gridcolor='lightslategray'
     )
     fig.update_yaxes(title='Percentage of Participants With Symptoms', gridwidth=0.5, gridcolor='lightslategray')
-    fig.update_layout(width=1000, height=500, yaxis_range=[10, 60])
     fig.layout.plot_bgcolor = '#0E1117'
     fig.layout.paper_bgcolor = '#0E1117'
     fig.update_xaxes(showgrid=False, zeroline=False)

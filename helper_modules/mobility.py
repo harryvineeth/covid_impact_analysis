@@ -16,18 +16,20 @@ def plot_apple_data(apple_mobility_state, apple_mobility_time):
                       yaxis_title='% change in transit from baseline')
     fig.layout.plot_bgcolor = '#0E1117'
     fig.layout.paper_bgcolor = '#0E1117'
+    fig.add_vrect(x0="10.5",
+                                   x1="12.5",
+                                   annotation_text=" Covid Cases Peak", annotation_position="top left",
+                                   fillcolor="green", opacity=0.25, line_width=0)
+    fig.add_vrect(x0="1.8",
+                                   x1="3",
+                                   annotation_text="Stay at Home Policy", annotation_position="top left",
+                                   fillcolor="green", opacity=0.25, line_width=0)
+    fig.add_vrect(x0="17",
+                                   x1="18",
+                                   annotation_text="Delta Variant starts", annotation_position="top left",
+                                   fillcolor="green", opacity=0.25, line_width=0)
     fig.update_xaxes(showgrid=False, zeroline=False)
     fig.update_yaxes(showgrid=False, zeroline=False)
-    fig.add_shape(type="rect",
-                  xref="x",
-                  yref="paper",
-                  x0=10.5,
-                  y0=0,
-                  x1=12.5,
-                  y1=1,
-                  line=dict(color="rgba(0,0,0,0)",width=3,),
-                  fillcolor='rgba(255,0,0,0.2)',
-                  layer='below')
     col.plotly_chart(fig, use_container_width=True)
 
     buff, col, buff2 = st.columns([5, 2, 5])
@@ -101,16 +103,18 @@ def plot_google_national(google_national_data, month_year):
             'x':'Date'
         }
     , markers=True)
-    national_work_figure.add_shape(type="rect",
-                  xref="x",
-                  yref="paper",
-                  x0=9.5,
-                  y0=0,
-                  x1=11.5,
-                  y1=1,
-                  line=dict(color="rgba(0,0,0,0)", width=3, ),
-                  fillcolor='rgba(255,0,0,0.2)',
-                  layer='below')
+    national_work_figure.add_vrect(x0="9.5",
+                  x1="11.5",
+                  annotation_text=" Covid Cases Peak", annotation_position="top left",
+                  fillcolor="green", opacity=0.25, line_width=0)
+    national_work_figure.add_vrect(x0="0.8",
+                  x1="2",
+                  annotation_text="Stay at Home Policy", annotation_position="top left",
+                  fillcolor="green", opacity=0.25, line_width=0)
+    national_work_figure.add_vrect(x0="16",
+                  x1="17",
+                  annotation_text="Delta Variant starts", annotation_position="top left",
+                  fillcolor="green", opacity=0.25, line_width=0)
     national_work_figure.layout.plot_bgcolor = '#0E1117'
     national_work_figure.layout.paper_bgcolor = '#0E1117'
     national_work_figure.update_xaxes(showgrid=False, zeroline=False)

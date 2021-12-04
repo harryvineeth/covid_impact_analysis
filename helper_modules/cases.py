@@ -12,18 +12,19 @@ def plot_cases_data(cases, cases_groups):
     fig.layout.paper_bgcolor = '#0E1117'
     fig.update_xaxes(showgrid=False, zeroline=False)
     fig.update_yaxes(showgrid=False, zeroline=False)
-    fig.add_shape(type="rect",
-                  xref="x",
-                  yref="paper",
-                  x0=10.5,
-                  y0=0,
-                  x1=12.5,
-                  y1=1,
-                  line=dict(color="rgba(0,0,0,0)", width=3, ),
-                  fillcolor='rgba(255,0,0,0.2)',
-                  layer='below')
+    fig.add_vrect(x0="10.5",
+                   x1="12.5",
+                  annotation_text=" Covid Cases Peak", annotation_position="top left",
+                  fillcolor="green", opacity=0.25, line_width=0)
+    fig.add_vrect(x0="1.8",
+                   x1="3",
+                  annotation_text="Stay at Home Policy", annotation_position="top left",
+                  fillcolor="green", opacity=0.25, line_width=0)
+    fig.add_vrect(x0="17",
+                  x1="18",
+                  annotation_text="Delta Variant starts", annotation_position="top left",
+                  fillcolor="green", opacity=0.25, line_width=0)
     col.plotly_chart(fig, use_container_width=True)
-
 
     buff, col, buff2 = st.columns([1, 3, 1])
     col.header("How many cases have been registered in the United States?")
@@ -31,19 +32,22 @@ def plot_cases_data(cases, cases_groups):
     cases_filtered['state_code'] = (cases_filtered['state']).map(us_state_to_abbrev)
     cases_filtered['month'] = pd.to_datetime(cases_filtered["date"]).dt.month
     cases_filtered['year'] = pd.to_datetime(cases_filtered["date"]).dt.year
-    cases_filtered['month_year'] = cases_filtered['month'].apply(lambda x: calendar.month_abbr[x]).astype(str) + " " + \
-                                   cases_filtered['year'].astype(str)
     cases_filtered = cases_filtered[(cases_filtered['state'] != 'District of Columbia')]
+    cases_filtered = cases_filtered.groupby(['year', 'month','state_code']).sum().reset_index()
+    cases_filtered["Date"] = cases_filtered['month'].apply(lambda x: calendar.month_abbr[x]).astype(str) + " " + \
+                                   cases_filtered['year'].astype(str)
+
+    cases_filtered['Cases'] = np.log(cases_filtered['Cases'])
     fig = px.choropleth(cases_filtered,
                         locations='state_code',
                         color="Cases",
                         hover_name="state_code",
-                        animation_frame="month_year",
+                        animation_frame="Date",
                         color_continuous_scale="reds",
                         locationmode='USA-states',
                         scope="usa",
-                        range_color=(0, 15000),
-                        title='Number of cases by state',
+                        range_color=(0, 18),
+                        title='Number of cases by state (logarithmic scale)',
                         height=600,
                         )
     fig.update_layout(  # Create a Title
@@ -84,7 +88,6 @@ def plot_policy_data(mobility_policy):
     fig.update_layout(  # Create a Title
         geo_scope='usa',  # Plot only the USA instead of globe
         geo=dict(bgcolor='rgba(0,0,0,0)', lakecolor='#4E5D6C'),
-
     )
     buff, col, buff2 = st.columns([1, 3, 1])
     col.plotly_chart(fig, use_container_width=True)
@@ -106,16 +109,14 @@ def plot_vaccination_data(vaccines):
     fig.layout.paper_bgcolor = '#0E1117'
     fig.update_xaxes(showgrid=False, zeroline=False)
     fig.update_yaxes(showgrid=False, zeroline=False)
-    fig.add_shape(type="rect",
-                  xref="x",
-                  yref="paper",
-                  x0="2020-11-15",
-                  y0=0,
+    fig.add_vrect(x0="2020-11-15",
                   x1="2021-01-15",
-                  y1=1,
-                  line=dict(color="rgba(0,0,0,0)", width=3, ),
-                  fillcolor='rgba(255,0,0,0.2)',
-                  layer='below')
+                  annotation_text=" Covid Cases Peak", annotation_position="top left",
+                  fillcolor="green", opacity=0.25, line_width=0)
+    fig.add_vrect(x0="2021-06-01",
+                  x1="2021-07-01",
+                  annotation_text="Delta Variant Starts", annotation_position="top left",
+                  fillcolor="green", opacity=0.25, line_width=0)
     fig.update_layout(legend_title_text='Types of Vaccines',
                       title='Number of Vaccines distributed per day (Smoothed over a week)',
                       xaxis_title='Date',
