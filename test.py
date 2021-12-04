@@ -73,7 +73,7 @@ elif navigation() == "traffic":
     run_mobility(apple_mobility_state, apple_mobility_time, google_national_data, google_state_data, mobility_groups)
 
 elif navigation() == "power":
-    run_power()
+    run_power(energy_change_states_negative, energy_change_states_positive, energy_change_states, energy_change_states_heatmap)
 
 elif navigation() == "well-being":
     run_mental_health(mental_health_statewise, mental_health, mental_health_nationwide)
