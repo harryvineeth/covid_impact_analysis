@@ -104,18 +104,18 @@ def plot_vaccination_data(vaccines):
     fig = px.line(vaccines_filtered, x="Date", y=vaccine_columns)
     fig.layout.plot_bgcolor = '#0E1117'
     fig.layout.paper_bgcolor = '#0E1117'
+    fig.update_xaxes(showgrid=False, zeroline=False)
+    fig.update_yaxes(showgrid=False, zeroline=False)
     fig.add_shape(type="rect",
                   xref="x",
                   yref="paper",
-                  x0=0,
+                  x0="2020-11-15",
                   y0=0,
-                  x1=1,
+                  x1="2021-01-15",
                   y1=1,
                   line=dict(color="rgba(0,0,0,0)", width=3, ),
                   fillcolor='rgba(255,0,0,0.2)',
                   layer='below')
-    fig.update_xaxes(showgrid=False, zeroline=False)
-    fig.update_yaxes(showgrid=False, zeroline=False)
     fig.update_layout(legend_title_text='Types of Vaccines',
                       title='Number of Vaccines distributed per day (Smoothed over a week)',
                       xaxis_title='Date',

@@ -2,8 +2,7 @@ from helper_modules.imports import *
 from helper_modules.cases import *
 from helper_modules.home import *
 from helper_modules.mental_health import *
-from helper_modules.life_today import *
-from helper_modules.life_tomorrow import *
+from helper_modules.conclusion import *
 from helper_modules.power import *
 from helper_modules.mobility import *
 
@@ -35,11 +34,8 @@ st.markdown("""
       <li class="nav-item active" id="well-being">
         <a class="nav-link" href="http://localhost:8501?p=well-being">Well being</a>
       </li>
-      <li class="nav-item active" id="life-today">
-        <a class="nav-link" href="http://localhost:8501?p=life-today">Life Today</a>
-      </li>
-      <li class="nav-item active" id="life-tomorrow">
-        <a class="nav-link" href="http://localhost:8501?p=life-tomorrow">Life Tomorrow</a>
+      <li class="nav-item active" id="conclusion">
+        <a class="nav-link" href="http://localhost:8501?p=Conclusion">Conclusion</a>
       </li>
     </ul>
   </div>
@@ -82,11 +78,8 @@ elif navigation() == "power":
 elif navigation() == "well-being":
     run_mental_health(mental_health_statewise, mental_health, mental_health_nationwide)
 
-elif navigation() == "life-today":
-    run_life_today()
-
-elif navigation() == "life-tomorrow":
-    run_life_tomorrow()
+elif navigation() == "conclusion":
+    run_conclusion()
 
 else:
     run_home(cases, vaccines, mobility_policy, cases_groups)

@@ -5,8 +5,7 @@ from helper_modules.imports import *
 from helper_modules.cases import *
 from helper_modules.home import *
 from helper_modules.mental_health import *
-from helper_modules.life_today import *
-from helper_modules.life_tomorrow import *
+from helper_modules.conclusion import *
 from helper_modules.power import *
 from helper_modules.mobility import *
 
@@ -18,9 +17,9 @@ menu_data = [
     {'id':'traffic','icon': "🚦", 'label':"Traffic"},
     {'id':'power','icon': "⚡", 'label':"Power"},
     {'id':'well-being','icon':"🎗",'label':"Well Being"},
-    {'id':'life-today','icon':"🦠",'label':"Life Today"},
-    {'id':'life-tomorrow','icon':"❓",'label':"Life Tomorrow"},
-     {'icon': "fa-solid fa-radar",'label':"Dropdown1", 'submenu':[{'id':' subid11','icon': "fa fa-paperclip", 'label':"Sub-item 1"},{'id':'subid12','icon': "💀", 'label':"Sub-item 2"},{'id':'subid13','icon': "fa fa-database", 'label':"Sub-item 3"}]},
+   # {'id':'life-today','icon':"🦠",'label':"Life Today"},
+    {'id':'conclusion','icon':"❓",'label':"Conclusion"},
+     #{'icon': "fa-solid fa-radar",'label':"Dropdown1", 'submenu':[{'id':' subid11','icon': "fa fa-paperclip", 'label':"Sub-item 1"},{'id':'subid12','icon': "💀", 'label':"Sub-item 2"},{'id':'subid13','icon': "fa fa-database", 'label':"Sub-item 3"}]},
     # {'icon': "far fa-chart-bar", 'label':"Chart"},#no tooltip message
     # {'id':' Crazy return value 💀','icon': "💀", 'label':"Calendar"},
     # {'icon': "fas fa-tachometer-alt", 'label':"Dashboard",'ttip':"I'm the Dashboard tooltip!"}, #can add a tooltip message
@@ -63,8 +62,5 @@ elif menu_id == "power":
 elif menu_id == "well-being":
     run_mental_health(mental_health_statewise, mental_health, mental_health_nationwide)
 
-elif menu_id == "life-today":
-    run_life_today()
-
-elif menu_id == "life-tomorrow":
-    run_life_tomorrow()
+elif menu_id == "conclusion":
+    run_conclusion()

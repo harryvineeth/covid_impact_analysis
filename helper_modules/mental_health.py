@@ -29,6 +29,16 @@ def plot_mental_health(mental_health_statewise, mental_health, mental_health_nat
                   annotation_font_size=15,
                   annotation_font_color="white"
                   )
+    fig.add_shape(type="rect",
+                   xref="x",
+                   yref="paper",
+                   x0="2020-11-15",
+                   y0=0,
+                   x1="2021-01-15",
+                   y1=1,
+                   line=dict(color="rgba(0,0,0,0)", width=3, ),
+                   fillcolor='rgba(255,0,0,0.2)',
+                   layer='below')
     fig.update_xaxes(
         tickformat='%d-%b-%Y',
         tickangle=45,

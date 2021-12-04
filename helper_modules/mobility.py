@@ -101,6 +101,16 @@ def plot_google_national(google_national_data, month_year):
             'x':'Date'
         }
     , markers=True)
+    national_work_figure.add_shape(type="rect",
+                  xref="x",
+                  yref="paper",
+                  x0=9.5,
+                  y0=0,
+                  x1=11.5,
+                  y1=1,
+                  line=dict(color="rgba(0,0,0,0)", width=3, ),
+                  fillcolor='rgba(255,0,0,0.2)',
+                  layer='below')
     national_work_figure.layout.plot_bgcolor = '#0E1117'
     national_work_figure.layout.paper_bgcolor = '#0E1117'
     national_work_figure.update_xaxes(showgrid=False, zeroline=False)
