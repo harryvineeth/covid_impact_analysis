@@ -34,6 +34,8 @@ def run_model(state_input):
 ["CA","NV","UT","CO","NE","KS","MO","KY","WV","VA","MD","DE","..",".."],
 ["..","AZ","NM","TX","OK","AR","TN","NC","..","..","..","..","..",".."],
 ["..","..","..","..","LA","MS","AL","GA","FL","SC","..","..","..",".."]])
+
+    states_to_index = {'WA': (0, 0), 'MT': (0, 1), 'ND': (0, 2), 'MN': (0, 3), 'WI': (0, 4), 'MI': (0, 5), '..': (4, 13), 'NY': (0, 7), 'VT': (0, 8), 'NH': (0, 9), 'ME': (0, 10), 'OR': (1, 0), 'ID': (1, 1), 'WY': (1, 2), 'SD': (1, 3), 'IA': (1, 4), 'IL': (1, 5), 'IN': (1, 6), 'OH': (1, 7), 'PA': (1, 8), 'NJ': (1, 9), 'CT': (1, 10), 'RI': (1, 11), 'MA': (1, 12), 'CA': (2, 0), 'NV': (2, 1), 'UT': (2, 2), 'CO': (2, 3), 'NE': (2, 4), 'KS': (2, 5), 'MO': (2, 6), 'KY': (2, 7), 'WV': (2, 8), 'VA': (2, 9), 'MD': (2, 10), 'DE': (2, 11), 'AZ': (3, 1), 'NM': (3, 2), 'TX': (3, 3), 'OK': (3, 4), 'AR': (3, 5), 'TN': (3, 6), 'NC': (3, 7), 'LA': (4, 4), 'MS': (4, 5), 'AL': (4, 6), 'GA': (4, 7), 'FL': (4, 8), 'SC': (4, 9)}
     # Initialize this as the value to multiply the Gaussian mask with 
     # (proportional to the general scale of cases seen) 
     strength = 0.25
