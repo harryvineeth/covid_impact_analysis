@@ -1,7 +1,7 @@
 from helper_modules.imports import *
 
 
-def energy_timeline_graph(energy_change_states_combined, energy_change_states):
+def energy_timeline_graph(energy_change_national, energy_change_states):
     buff, col, buff2 = st.columns([1, 3, 1])
     col.header("How has COVID-19 affected Energy Generation in various states?")
 
@@ -32,16 +32,16 @@ def energy_timeline_graph(energy_change_states_combined, energy_change_states):
     fig.layout.paper_bgcolor = '#0E1117'
     col.plotly_chart(fig, use_container_width=True)
 
-    col.subheader(
-        'Observing change in usage on a monthly basis, on positive and negative states'
-    )
+    # col.subheader(
+    #     'Observing change in usage on a monthly basis, on positive and negative states'
+    # )
+    #
+    # types_of_groups = col.multiselect("Choose to observe states with positive and negative impact", ['Positive','Negative'],
+    #                                   default=["Positive"])
+    #
+    # energy_change_states_combined = energy_change_states_combined[energy_change_states_combined['Change type'].isin(types_of_groups)]
 
-    types_of_groups = col.multiselect("Choose to observe states with positive and negative impact", ['Positive','Negative'],
-                                      default=["Positive"])
-
-    energy_change_states_combined = energy_change_states_combined[energy_change_states_combined['Change type'].isin(types_of_groups)]
-
-    fig = px.line(energy_change_states_combined, x='month',y='change',color='state_name', markers=True)
+    fig = px.line(energy_change_national, x='Date',y='change', markers=True)
     fig.layout.plot_bgcolor = '#0E1117'
     fig.layout.paper_bgcolor = '#0E1117'
     fig.update_xaxes(showgrid=False, zeroline=False)
@@ -52,20 +52,12 @@ def energy_timeline_graph(energy_change_states_combined, energy_change_states):
                       yaxis_title='% Change')
     col.plotly_chart(fig, use_container_width=True)
 
-    # if type_state == 'Negative Impact':
-    #     data = energy_change_states_negative
-    #
-    # if type_state == 'Both':
-    #     data_positive = energy_change_states_positive
-    #     data_negative = energy_change_states_negative
-    #
-
 
 def df_energy_to_heatmap_format(df):
     return {
-        'z': df['scaled_consumption'],
-        'y': df['state_name'],
-        'x': df['date']
+        'z': df['change'],
+        'y': df['state'],
+        'x': df['month_year']
     }
 
 
@@ -86,9 +78,8 @@ def plot_energy_heatmap(energy_change_states_heatmap):
     col.plotly_chart(fig, use_container_width=True)
 
 
-def run_power( energy_change_states_combined, energy_change_states, energy_change_states_heatmap):
+def run_power( energy_change_national, energy_change_states, energy_change_states_heatmap):
     st.title('Power')
-    energy_timeline_graph(energy_change_states_combined, energy_change_states)
-    print(energy_change_states_heatmap)
+    energy_timeline_graph(energy_change_national, energy_change_states)
     plot_energy_heatmap(energy_change_states_heatmap)
     

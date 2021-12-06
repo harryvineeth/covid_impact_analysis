@@ -157,11 +157,11 @@ def load_data():
     google_state_data = pd.read_csv('cleaned/googleState.csv').set_index('sub_region_1')
     mobility_policy = pd.read_csv("cleaned/cleaned_mobility_policy_data.csv")
     mobility_groups = pd.read_csv("cleaned/cleaned_formatted_mobility.csv")
-    energy_change_states_combined = pd.read_csv("cleaned/final_transformations/energy_change_states.csv")
+    energy_change_national = pd.read_csv("cleaned/energy_smoothed.csv")
     energy_change_states = pd.read_csv("cleaned/energy__change-states.csv")
-    energy_change_states_heatmap = pd.read_csv("cleaned/energy__state-aggregation-heatmap.csv")
+    energy_change_states_heatmap = pd.read_csv("cleaned/energy_heatmap.csv")
 
 
     return cases, vaccines, mental_health_statewise, mental_health_nationwide, mental_health, apple_mobility_state, \
            apple_mobility_time, google_national_data, google_state_data, mobility_policy, mobility_groups, cases_groups, \
-           energy_change_states_combined, energy_change_states, energy_change_states_heatmap
+           energy_change_national, energy_change_states, energy_change_states_heatmap
