@@ -1,9 +1,17 @@
 from helper_modules.imports import *
 
 
-def plot_cases_data(cases, cases_groups):
+def plot_cases_data(cases, cases_groups, mobility_policy):
 
     buff, col, buff2 = st.columns([1, 3, 1])
+    col.header("The Unseen Impacts of COVID-19")
+    col.markdown(
+        "The first cases of COVID-19 were recorded in December of, 2019. In the two years since, the world has experienced the greatest change in life expectancy since World War Two (Jack). Global industry and commerce have been disrupted in ways we are only now beginning to feel the effects of. Countries have faced shortages of goods once commonplace. The habits and routines of the entire world have been forced to adapt in response to a disease. What toll then has the pandemic taken on the habits and wellbeing of people? What are these changes and can they be measured in correlation with COVID-related events? Through this site, we seek to answer these questions and examine how the coronavirus has impacted the movement habits, power usage, and mental wellbeing of the people of the United States.")
+
+    col.header("The Common Factors")
+    col.markdown(
+        "Two primary factors come into play when analyzing data gathered from the U.S. during the pandemic: time and the state in which the data was collected. In order to assess how COVID has affected the lives of everyday people, a shared timeline must be established to correlate other data to COVID. There are the number of new cases to consider, the vaccination rates, new variants, COVID waves, and policy changes which may reflect differently in each topic at hand. In the graph below, you can see that certain time periods are associated with dramatic rises in case numbers. Specifically, the period from November 2020 to February 2021, where new cases were at their highest levels, and July through September 2021, when the delta variant began to hit the United States.")
+
     fig = px.line(cases_groups, x="month_year", y="Cases", hover_data=['Cases'], markers=True)
     fig.update_layout(title='Number of Cases registered in the United States',
                       xaxis_title='Time',
@@ -26,8 +34,14 @@ def plot_cases_data(cases, cases_groups):
                   fillcolor="green", opacity=0.25, line_width=0)
     col.plotly_chart(fig, use_container_width=True)
 
+    col.markdown(
+    "Moreover, each individual state executed their own policies and would have different populations and industries which were likely affected differently. To find correlations between movement, power consumption, and mental health and COVID data then, we must consider both the time and state we see trends in to confirm if there are other factors in play than only the coronavirus. See below, where many other countries imposed federal mandates, even the initial stay at home order was implemented across a month long period for each state.")
+    plot_policy_data(mobility_policy)
+
     buff, col, buff2 = st.columns([1, 3, 1])
     col.header("How many cases have been registered in the United States?")
+    col.markdown(
+    "You can further see the differences in each states’ reaction and impact of COVID-19 in an analysis of each state’s case rate. The more populated states, like California, Texas, Florida, or New York, had high case rates for much of the pandemic so far. Less populated states, like North Dakota or Montana, had distinct flare ups, but then returned to lowercase rates. Nearly every state maintained high case rates during the peak COVID period of November 2020 - February 2021, with the worst month being January, when cases spiked to nearly 300,000 new cases during one week. .")
     cases_filtered = cases
     cases_filtered['state_code'] = (cases_filtered['state']).map(us_state_to_abbrev)
     cases_filtered['month'] = pd.to_datetime(cases_filtered["date"]).dt.month
@@ -58,8 +72,8 @@ def plot_cases_data(cases, cases_groups):
 
 def plot_policy_data(mobility_policy):
     buff, col2, buff2 = st.columns([2, 3, 2])
-    col2.markdown(
-        "The government issued stay-at-home regulations to curb the growing number of cases. Different states issued orders at different times in as a reactionary response to the number of active cases.")
+    #col2.markdown(
+    #    "The government issued stay-at-home regulations to curb the growing number of cases. Different states issued orders at different times in as a reactionary response to the number of active cases.")
     slider = col2.slider('Move the slider below to view states issuing stay-at-home orders over the course of 2020.',
                          min_value=dt.date(year=2020, month=2, day=28), max_value=dt.date(year=2020, month=3, day=22),
                          format='MM-DD-YYYY')
@@ -96,6 +110,9 @@ def plot_policy_data(mobility_policy):
 def plot_vaccination_data(vaccines):
     buff, col, buff2 = st.columns([1, 3, 1])
     col.header("How many vaccines have been distributed in the United States?")
+    col.markdown(
+    "How then have vaccinations impacted the number of COVID-19 cases? Interestingly,  when more people are being vaccinated there appear to be fewer new COVID cases. You can see this most clearly in the after the peak of cases in January, which corresponds with the implementation of wide scale vaccinations in the U.S. After the incredibly high caseloads of December and January, the number declines sharply, exactly while vaccinations rates begin to skyrocket. The number of cases remains low for the entire peak of the vaccination rates, from January through to June. Unfortunately, in June the vaccination rates plateau, just as the delta variant begins to increase COVID case numbers again. After the rise of cases, and government efforts to get more people vaccinated, like mandatory vaccination requirements for federal and state employees, we begin to see a slight increase in vaccination rates.")
+
     types_of_vaccines = col.multiselect("Types of Vaccine Doses",
                                         ["Total Doses", "Moderna Doses", "Pfizer Doses", "Booster Doses",
                                          "Johnson & Johnson Doses"], default=["Total Doses"])
@@ -122,3 +139,5 @@ def plot_vaccination_data(vaccines):
                       xaxis_title='Date',
                       yaxis_title='No of Vaccines Administered (In Millions)')
     col.plotly_chart(fig, use_container_width=True)
+
+    col.markdown("It is unlikely that the U.S. will return to the same vaccination rates as were seen in the initial vaccination period, simply because the people who wanted to become vaccinated have already done so.  Unless we see a wide scale adoption of booster shots, or if the original vaccines begin to fail in the face of new coronavirus strains. A not insignificant portion of the U.S. population have bought into the vaccine misinformation campaigns and refuse to be vaccinated, even at the risk of unemployment.")
