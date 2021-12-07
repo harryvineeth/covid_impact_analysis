@@ -45,10 +45,11 @@ def plot_apple_data(apple_mobility_state, apple_mobility_time):
     if yearOption != '2020 and 2021':
         apple_mobility_state = apple_mobility_state[apple_mobility_state.index.str.contains(yearOption)]
     fig = go.Figure(
-        data=go.Heatmap(df_to_plotly(apple_mobility_state.T), type='heatmap', colorscale='rdbu'),
+        data=go.Heatmap(df_to_plotly(apple_mobility_state.T), type='heatmap', colorscale='plotly3', opacity=0.6),
         layout=go.Layout(width=600, height=1000,
                          title="Percentage change in transit traffic compared to baseline (2019)"))
-
+    fig.update_xaxes(showgrid=False, zeroline=False)
+    fig.update_yaxes(showgrid=False, zeroline=False)
     col.plotly_chart(fig, use_container_width=True)
     col.markdown("The above plot shows the Apple transit data grouped by state and maintains the overall trends of the national data. Wisconsin immediately pops out as an outlier during September-November 2021. This may be due to a combination of unseasonably warm weather in late 2021, along with the baseline being established in the middle of winter where transit would be relatively low [National Weather Service]. Another possible factor may have been events returning to full capacity for 2021, for example sporting events. While this effect may be less evident in larger states, Wisconsin has a low population with several  popular teams, such as the Packers. A sudden increase in the movement of football fans would be much more apparent in Wisconsin than in, say, California. ")
     col.markdown("Another general trend is a higher transit rate among several Northeastern states, like New Jersey, Rhode Island, and Massachusetts, starting in the summer of 2021. Seasonal differences may be coming into play, as these states are typically hit harder by winter effects than the rest of the nation, resulting in a skewed baseline. ")
@@ -137,13 +138,13 @@ def plot_google_national(google_national_data, month_year):
 
 def plot_google_state(google_state_data, month_year):
     buff, col, buff2 = st.columns([5, 2, 5])
-    yearOption = col.selectbox('YEAR', ('2020', '2021', '2020 and 2021'))
+    yearOption = col.selectbox('Year', ('2020', '2021', '2020 and 2021'), key="year2")
 
     if yearOption != '2020 and 2021':
         month_year = [string for string in month_year if yearOption in string]
     buff, col, buff2 = st.columns([1, 3, 1])
     stateWork = go.Figure(
-                data=go.Heatmap(df_to_plotly_google(google_state_data[month_year]), type = 'heatmap', colorscale = 'rdbu'),
+                data=go.Heatmap(df_to_plotly_google(google_state_data[month_year]), type = 'heatmap', colorscale = 'plotly3'),
                 layout=go.Layout(width = 600,height = 1000, title="Percent Change in Workplace Mobility By State"))
     stateWork.update_layout(
         xaxis_title='Date',

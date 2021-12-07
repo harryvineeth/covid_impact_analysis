@@ -29,7 +29,7 @@ def get_gaussian_map(x, y, t, rows, cols, variance, strength, gamma, alpha):
     return mask
 
 
-def run_model(state_input, T=6):
+def run_model(state_input, T=6, infect_option=True):
     states_map_location = np.array(
         [["WA", "MT", "ND", "MN", "WI", "MI", "..", "NY", "VT", "NH", "ME", "..", "..", ".."],
          ["OR", "ID", "WY", "SD", "IA", "IL", "IN", "OH", "PA", "NJ", "CT", "RI", "MA", ".."],
@@ -82,7 +82,10 @@ def run_model(state_input, T=6):
                     state = index_to_state[(i, j)]
                 else:
                     state = '..'
-                next_state_cases[state] = (1 + gaussian_map[i, j]) * cases_dict[state]
+                if(infect_option=="Infect"):
+                    next_state_cases[state] = (1 + gaussian_map[i, j]) * cases_dict[state]
+                else:
+                    next_state_cases[state] = (1 - gaussian_map[i, j]) * cases_dict[state]
         list_cases_dict.append(next_state_cases)
         cases_dict = next_state_cases
 

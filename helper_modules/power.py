@@ -35,8 +35,8 @@ def energy_timeline_graph(energy_change_national, energy_change_states):
 
 
     colors = {
-        'Negative': 'LightCoral',
-        'Positive': 'ForestGreen',
+        'Negative': '#ef553b',
+        'Positive': '#636efa',
     }
 
     # First graph is a simple comparison Bar graph showing different deltas
@@ -91,10 +91,13 @@ def plot_energy_heatmap(energy_change_states_heatmap):
     # print (energy_change_states_heatmap)
     buff, col, buff2 = st.columns([1, 3, 1])
     fig = go.Figure(
-        data=go.Heatmap(df_energy_to_heatmap_format(energy_change_states_heatmap), type='heatmap', colorscale='rdbu_r'),
+        data=go.Heatmap(df_energy_to_heatmap_format(energy_change_states_heatmap), type='heatmap', colorscale='purpor', opacity=0.6),
         layout=go.Layout(width=600, height=1000,
                          title='Total Electric Power Industry')
     )
+    fig.update_xaxes(showgrid=False, zeroline=False)
+    fig.update_yaxes(showgrid=False, zeroline=False)
+
     col.plotly_chart(fig, use_container_width=True)
     col.markdown("The figure shows the percent change in electricity generation by state from 2020-2021. Generally, the patterns follow those of the national data. This plot highlights the two outliers identified in the previous plot. Rhode Island is the lowest energy consumer by capita, one of the highest percent of residential electricity consumption, and very little commercial and industrial electricity consumption [EIA]. Therefore, a stay at home policy would impact Rhode Island more heavily than other states.")
     col.markdown("On the other hand, Massachusetts electricity generation has consistently been below its 2019 value. Massachusetts consumes 15 times more energy than it generates, with half of its energy consumed by the commercial sector [EIA]. The compounding effect of a low baseline generation value and changes to the commercial energy consumption due to COVID-19 may explain its drastic difference from the 2019 value. Overall, individual state analysis of electricity generation heavily depends on energy profiles and national trends should be not applied without further analysis.")

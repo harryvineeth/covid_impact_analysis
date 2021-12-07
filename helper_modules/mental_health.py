@@ -65,12 +65,14 @@ def plot_mental_health(mental_health_statewise, mental_health, mental_health_nat
     index = 'Time Period End Date',
     columns = 'State')
 
-    fig2 = go.Figure(data=go.Heatmap(df_to_plotly(state_pivot.T), type='heatmap', colorscale='blues'))
+    fig2 = go.Figure(data=go.Heatmap(df_to_plotly(state_pivot.T), type='heatmap', colorscale='plotly3', opacity=0.6))
 
     fig2.update_layout(
         width=600, height=1000,
         title='Symptoms of Anxiety or Depression by State'
         )
+    fig2.update_xaxes(showgrid=False, zeroline=False)
+    fig2.update_yaxes(showgrid=False, zeroline=False)
 
     col.header("How did states affect mental health during COVID-19?")
 

@@ -57,7 +57,7 @@ def plot_cases_data(cases, cases_groups, mobility_policy):
                         color="Cases",
                         hover_name="state_code",
                         animation_frame="Date",
-                        color_continuous_scale="reds",
+                        color_continuous_scale="purpor",
                         locationmode='USA-states',
                         scope="usa",
                         range_color=(0, 18),
@@ -92,8 +92,8 @@ def plot_policy_data(mobility_policy):
                         hover_name="State Abbreviation",  # DataFrame column hover info
                         locationmode='USA-states',
                         color='Stay at Home Policy declared',
-                        color_discrete_map={'True': 'red',
-                                            'False': 'blue'})  # Set to plot as US States
+                        color_discrete_map={'True': '#A9333A',
+                                            'False': '#3E065F'})  # Set to plot as US States
     fig.add_scattergeo(name='State Names',
                        locations=mobility_policy['State Abbreviation'],
                        locationmode='USA-states',
