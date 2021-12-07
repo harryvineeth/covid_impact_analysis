@@ -11,30 +11,31 @@ st.set_page_config(layout="wide")
 
 st.markdown(
     """<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,600&display=swap" rel="stylesheet">
     """,
     unsafe_allow_html=True)
 
 st.markdown("""
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #3498DB;">
-  <a class="navbar-brand" target="_blank">Covid Impact Analysis</a>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #700B97; height: 80px; font-family: 'Source Serif Pro', serif;">
+  <a class="navbar-brand" style="font-size: 30px;" target="_blank">COVID Impact Analysis</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="nav navbar-nav">
-      <li class="nav-item active" id="home">
+      <li class="nav-item active" id="home" style="font-size: 20px;">
         <a class="nav-link" href="http://localhost:8501?p=home">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item active" id="traffic">
+      <li class="nav-item active" id="traffic"  style="font-size: 20px;">
         <a class="nav-link" href="http://localhost:8501?p=traffic">Traffic</a>
       </li>
-      <li class="nav-item active" id="power">
+      <li class="nav-item active" id="power"  style="font-size: 20px;">
         <a class="nav-link" href="http://localhost:8501?p=power">Power</a>
       </li>
-      <li class="nav-item active" id="well-being">
+      <li class="nav-item active" id="well-being"  style="font-size: 20px;">
         <a class="nav-link" href="http://localhost:8501?p=well-being">Well being</a>
       </li>
-      <li class="nav-item active" id="conclusion">
+      <li class="nav-item active" id="conclusion" style="font-size: 20px;">
         <a class="nav-link" href="http://localhost:8501?p=Conclusion">Conclusion</a>
       </li>
     </ul>
