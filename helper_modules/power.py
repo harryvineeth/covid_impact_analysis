@@ -37,7 +37,7 @@ def energy_timeline_graph(energy_change_national, energy_change_states):
 
     # First graph is a simple comparison Bar graph showing different deltas
     fig = px.bar(
-        energy_change_states, 
+        energy_change_states,
         x='change',
         y='state_name',
         orientation='h',
@@ -91,9 +91,14 @@ def plot_energy_heatmap(energy_change_states_heatmap):
     )
     col.plotly_chart(fig, use_container_width=True)
 
+    dict_check = col.checkbox("Citations")
+
+    if dict_check:
+        col.header("Citations:")
+        col.markdown("EIA. (2021, November). Net Generation by State by Type of Producer by Energy Source. https://www.eia.gov/electricity/data/state/")
+
 
 def run_power( energy_change_national, energy_change_states, energy_change_states_heatmap):
     st.title('Power')
     energy_timeline_graph(energy_change_national, energy_change_states)
     plot_energy_heatmap(energy_change_states_heatmap)
-    

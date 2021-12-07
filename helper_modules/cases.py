@@ -142,6 +142,9 @@ def plot_vaccination_data(vaccines):
 
     col.markdown("It is unlikely that the U.S. will return to the same vaccination rates as were seen in the initial vaccination period, simply because the people who wanted to become vaccinated have already done so.  Unless we see a wide scale adoption of booster shots, or if the original vaccines begin to fail in the face of new coronavirus strains. A not insignificant portion of the U.S. population have bought into the vaccine misinformation campaigns and refuse to be vaccinated, even at the risk of unemployment.")
 
-    col.header("Citations:")
-    col.markdown("Jack, V. (2021, September 27). COVID-19 pandemic cut life expectancy by most since World War Two –study. Reuters.")
-    col.markdown("The New York Times. (2021). Coronavirus (Covid-19) Data in the United States. Retrieved 06 Dec. 2021, from https://github.com/nytimes/covid-19-data.")
+    dict_check = col.checkbox("Citations")
+
+    if dict_check:
+        col.header("Citations:")
+        col.markdown("Jack, V. (2021, September 27). COVID-19 pandemic cut life expectancy by most since World War Two –study. Reuters.")
+        col.markdown("The New York Times. (2021). Coronavirus (Covid-19) Data in the United States. Retrieved 06 Dec. 2021, from https://github.com/nytimes/covid-19-data.")
