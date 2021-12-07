@@ -1,11 +1,13 @@
 from helper_modules.imports import *
 
 def run_mobility(apple_mobility_state, apple_mobility_time, google_national_data, google_state_data, mobility_groups):
-    st.title('Traffic')
-    st.write('This is the Traffic page.')
+    buff, col, buff2 = st.columns([1, 3, 1])
+    col.header("How do you measure travel?")
+    col.markdown("")
 
     plot_apple_data(apple_mobility_state, apple_mobility_time)
     plot_google_data(google_national_data, google_state_data, mobility_groups)
+
 
 
 def plot_apple_data(apple_mobility_state, apple_mobility_time):
@@ -138,6 +140,13 @@ def plot_google_state(google_state_data, month_year):
         yaxis_title= 'State')
 
     col.plotly_chart(stateWork, use_container_width=True)
+    dict_check = col.checkbox("Citations")
+    if dict_check:
+        col.header("Citations:")
+        col.markdown("Apple. (2021, November). COVID‑19 - Mobility Trends Reports. https://covid19.apple.com/mobility")
+        col.markdown("Google. (2021, November). See how your community is moving around differently due to COVID-19. https://www.google.com/covid19/mobility/index.html?hl=en)")
+        col.markdown("US Census Bureau Public Information Office. (2012, March 26). Growth in Urban Population Outpaces Rest of Nation, Census Bureau Reports - 2010 Census - Newsroom - U.S. Census Bureau. Census. ")
+
 
 
 def plot_google_data(google_national_data, google_state_data, mobility_groups):
