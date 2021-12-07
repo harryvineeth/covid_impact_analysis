@@ -57,5 +57,4 @@ def plot_model():
 
 
 def run_conclusion():
-    st.title('Conclusion')
     plot_model()
