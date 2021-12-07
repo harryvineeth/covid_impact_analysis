@@ -1,0 +1,8 @@
+[global]
+showWarningOnDirectExecution = false
+[theme]
+primaryColor="#8E05C2"
+backgroundColor="#121212"
+secondaryBackgroundColor="#212121"
+font="serif"
+
