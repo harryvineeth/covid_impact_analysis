@@ -16,22 +16,22 @@ def plot_cases_data(cases, cases_groups, mobility_policy):
     fig.update_layout(title='Number of Cases registered in the United States',
                       xaxis_title='Time',
                       yaxis_title='Sum of Cases per month')
-    fig.layout.plot_bgcolor = '#0E1117'
-    fig.layout.paper_bgcolor = '#0E1117'
+    fig.layout.plot_bgcolor = '#121212'
+    fig.layout.paper_bgcolor = '#121212'
     fig.update_xaxes(showgrid=False, zeroline=False)
     fig.update_yaxes(showgrid=False, zeroline=False)
     fig.add_vrect(x0="10.5",
                    x1="12.5",
                   annotation_text=" Covid Cases Peak", annotation_position="top left",
-                  fillcolor="green", opacity=0.25, line_width=0)
+                  fillcolor="#AB63FA", opacity=0.2, line_width=0)
     fig.add_vrect(x0="1.8",
                    x1="3",
                   annotation_text="Stay at Home Policy", annotation_position="top left",
-                  fillcolor="green", opacity=0.25, line_width=0)
+                  fillcolor="#AB63FA", opacity=0.2, line_width=0)
     fig.add_vrect(x0="17",
                   x1="18",
                   annotation_text="Delta Variant starts", annotation_position="top left",
-                  fillcolor="green", opacity=0.25, line_width=0)
+                  fillcolor="#AB63FA", opacity=0.2, line_width=0)
     col.plotly_chart(fig, use_container_width=True)
 
     col.markdown(
@@ -122,18 +122,18 @@ def plot_vaccination_data(vaccines):
     vaccines_filtered = vaccines[vaccine_columns]
 
     fig = px.line(vaccines_filtered, x="Date", y=vaccine_columns)
-    fig.layout.plot_bgcolor = '#0E1117'
-    fig.layout.paper_bgcolor = '#0E1117'
+    fig.layout.plot_bgcolor = '#121212'
+    fig.layout.paper_bgcolor = '#121212'
     fig.update_xaxes(showgrid=False, zeroline=False)
     fig.update_yaxes(showgrid=False, zeroline=False)
     fig.add_vrect(x0="2020-11-15",
                   x1="2021-01-15",
                   annotation_text=" Covid Cases Peak", annotation_position="top left",
-                  fillcolor="green", opacity=0.25, line_width=0)
+                  fillcolor="#AB63FA", opacity=0.2, line_width=0)
     fig.add_vrect(x0="2021-06-01",
                   x1="2021-07-01",
                   annotation_text="Delta Variant Starts", annotation_position="top left",
-                  fillcolor="green", opacity=0.25, line_width=0)
+                  fillcolor="#AB63FA", opacity=0.2, line_width=0)
     fig.update_layout(legend_title_text='Types of Vaccines',
                       title='Number of Vaccines distributed per day (Smoothed over a week)',
                       xaxis_title='Date',

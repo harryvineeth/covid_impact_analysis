@@ -3,6 +3,30 @@ from helper_modules.imports import *
 
 def energy_timeline_graph(energy_change_national, energy_change_states):
     buff, col, buff2 = st.columns([1, 3, 1])
+
+    fig = px.line(energy_change_national, x='Date',y='change', markers=True)
+    fig.add_vrect(x0="9.5",
+                   x1="11.5",
+                   annotation_text=" Covid Cases Peak", annotation_position="top left",
+                   fillcolor="#AB63FA", opacity=0.2, line_width=0)
+    fig.add_vrect(x0="0.8",
+                   x1="2",
+                   annotation_text="Stay at Home Policy", annotation_position="top left",
+                   fillcolor="#AB63FA", opacity=0.2, line_width=0)
+    fig.add_vrect(x0="16",
+                   x1="17",
+                   annotation_text="Delta Variant starts", annotation_position="top left",
+                   fillcolor="#AB63FA", opacity=0.2, line_width=0)
+    fig.layout.plot_bgcolor = '#121212'
+    fig.layout.paper_bgcolor = '#121212'
+    fig.update_xaxes(showgrid=False, zeroline=False)
+    fig.update_yaxes(showgrid=False, zeroline=False)
+    fig.update_layout(legend_title_text='States',
+                      title='Percentage Change of Electricity generated from 2019 to 2020',
+                      xaxis_title='Date',
+                      yaxis_title='% Change')
+    col.plotly_chart(fig, use_container_width=True)
+
     col.header("How has COVID-19 affected Energy Generation in various states?")
 
 
@@ -28,8 +52,8 @@ def energy_timeline_graph(energy_change_national, energy_change_states):
         xaxis_title='Change %',
         yaxis_title='States'
     )
-    fig.layout.plot_bgcolor = '#0E1117'
-    fig.layout.paper_bgcolor = '#0E1117'
+    fig.layout.plot_bgcolor = '#121212'
+    fig.layout.paper_bgcolor = '#121212'
     col.plotly_chart(fig, use_container_width=True)
 
     # col.subheader(
@@ -41,16 +65,6 @@ def energy_timeline_graph(energy_change_national, energy_change_states):
     #
     # energy_change_states_combined = energy_change_states_combined[energy_change_states_combined['Change type'].isin(types_of_groups)]
 
-    fig = px.line(energy_change_national, x='Date',y='change', markers=True)
-    fig.layout.plot_bgcolor = '#0E1117'
-    fig.layout.paper_bgcolor = '#0E1117'
-    fig.update_xaxes(showgrid=False, zeroline=False)
-    fig.update_yaxes(showgrid=False, zeroline=False)
-    fig.update_layout(legend_title_text='States',
-                      title='Percentage Change of Electricity generated from 2019 to 2020',
-                      xaxis_title='Date',
-                      yaxis_title='% Change')
-    col.plotly_chart(fig, use_container_width=True)
 
 
 def df_energy_to_heatmap_format(df):

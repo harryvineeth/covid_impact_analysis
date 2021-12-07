@@ -35,11 +35,11 @@ def plot_mental_health(mental_health_statewise, mental_health, mental_health_nat
     fig.add_vrect(x0="2020-11-15",
                    x1="2021-01-15",
                   annotation_text="     Covid Cases Peak", annotation_position="top left",
-                  fillcolor="green", opacity=0.25, line_width=0)
+                  fillcolor="#AB63FA", opacity=0.2, line_width=0)
     fig.add_vrect(x0="2021-06-01",
                   x1="2021-07-01",
                   annotation_text="Delta Variant Starts", annotation_position="top left",
-                  fillcolor="green", opacity=0.25, line_width=0)
+                  fillcolor="#AB63FA", opacity=0.2, line_width=0)
 
     fig.update_xaxes(
         tickformat='%b %Y',

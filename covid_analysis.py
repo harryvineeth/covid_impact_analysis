@@ -53,7 +53,7 @@ def navigation():
 
 
 # Loading the data from the cache
-cases, vaccines, mental_health_statewise, mental_health_nationwide, mental_health, apple_mobility_state, apple_mobility_time, google_national_data, google_state_data, mobility_policy, mobility_groups, cases_groups, energy_change_states_combined, energy_change_states, energy_change_states_heatmap = load_data()
+cases, vaccines, mental_health_statewise, mental_health_nationwide, mental_health, apple_mobility_state, apple_mobility_time, google_national_data, google_state_data, mobility_policy, mobility_groups, cases_groups, energy_change_national, energy_change_states, energy_change_states_heatmap = load_data()
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------
 #                                                                NAVIGATION
@@ -74,7 +74,7 @@ elif navigation() == "traffic":
     run_mobility(apple_mobility_state, apple_mobility_time, google_national_data, google_state_data, mobility_groups)
 
 elif navigation() == "power":
-    run_power( energy_change_states_combined, energy_change_states, energy_change_states_heatmap)
+    run_power( energy_change_national, energy_change_states, energy_change_states_heatmap)
 
 elif navigation() == "well-being":
     run_mental_health(mental_health_statewise, mental_health, mental_health_nationwide)

@@ -14,20 +14,20 @@ def plot_apple_data(apple_mobility_state, apple_mobility_time):
     fig.update_layout(title='Changes in transit patterns in the United States',
                       xaxis_title='Time',
                       yaxis_title='% change in transit from baseline')
-    fig.layout.plot_bgcolor = '#0E1117'
-    fig.layout.paper_bgcolor = '#0E1117'
+    fig.layout.plot_bgcolor = '#121212'
+    fig.layout.paper_bgcolor = '#121212'
     fig.add_vrect(x0="10.5",
-                                   x1="12.5",
-                                   annotation_text=" Covid Cases Peak", annotation_position="top left",
-                                   fillcolor="green", opacity=0.25, line_width=0)
+                   x1="12.5",
+                   annotation_text=" Covid Cases Peak", annotation_position="top left",
+                  fillcolor="#AB63FA", opacity=0.2, line_width=0)
     fig.add_vrect(x0="1.8",
-                                   x1="3",
-                                   annotation_text="Stay at Home Policy", annotation_position="top left",
-                                   fillcolor="green", opacity=0.25, line_width=0)
+                   x1="3",
+                   annotation_text="Stay at Home Policy", annotation_position="top left",
+                  fillcolor="#AB63FA", opacity=0.2, line_width=0)
     fig.add_vrect(x0="17",
-                                   x1="18",
-                                   annotation_text="Delta Variant starts", annotation_position="top left",
-                                   fillcolor="green", opacity=0.25, line_width=0)
+                   x1="18",
+                   annotation_text="Delta Variant starts", annotation_position="top left",
+                  fillcolor="#AB63FA", opacity=0.2, line_width=0)
     fig.update_xaxes(showgrid=False, zeroline=False)
     fig.update_yaxes(showgrid=False, zeroline=False)
     col.plotly_chart(fig, use_container_width=True)
@@ -85,8 +85,8 @@ def plot_google_groups(mobility_groups):
                       title='Percentage Change in Frequency of commonly visited places compared to baseline (2019)')
     # fig.update_yaxes(showline=True, linewidth=2, linecolor='black')
     # fig = px.line(mobilityGroups, x='date' , y='value',color='variable')
-    fig.layout.plot_bgcolor = '#0E1117'
-    fig.layout.paper_bgcolor = '#0E1117'
+    fig.layout.plot_bgcolor = '#121212'
+    fig.layout.paper_bgcolor = '#121212'
     fig.update_xaxes(showgrid=False, zeroline=False)
     fig.update_yaxes(showgrid=False, zeroline=False)
     col.plotly_chart(fig, use_container_width=True)
@@ -106,15 +106,15 @@ def plot_google_national(google_national_data, month_year):
     national_work_figure.add_vrect(x0="9.5",
                   x1="11.5",
                   annotation_text=" Covid Cases Peak", annotation_position="top left",
-                  fillcolor="green", opacity=0.25, line_width=0)
+                  fillcolor="#AB63FA", opacity=0.2, line_width=0)
     national_work_figure.add_vrect(x0="0.8",
                   x1="2",
                   annotation_text="Stay at Home Policy", annotation_position="top left",
-                  fillcolor="green", opacity=0.25, line_width=0)
+                  fillcolor="#AB63FA", opacity=0.2, line_width=0)
     national_work_figure.add_vrect(x0="16",
                   x1="17",
                   annotation_text="Delta Variant starts", annotation_position="top left",
-                  fillcolor="green", opacity=0.25, line_width=0)
+                  fillcolor="#AB63FA", opacity=0.2, line_width=0)
     national_work_figure.layout.plot_bgcolor = '#0E1117'
     national_work_figure.layout.paper_bgcolor = '#0E1117'
     national_work_figure.update_xaxes(showgrid=False, zeroline=False)
