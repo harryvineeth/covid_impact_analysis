@@ -61,7 +61,6 @@ def run_model(state_input, T=6, infect_option=True):
     cases = pd.read_csv('cleaned/model__saved-data-nov.csv')
     cases_dict = {}
     for i, row in cases.iterrows():
-        # print(row)
         cases_dict[row['state_code']] = row['cases']
     cases_dict['..'] = 0
 
@@ -70,8 +69,6 @@ def run_model(state_input, T=6, infect_option=True):
     location_of_state_in_gmap = states_to_index[state_input]
 
     list_cases_dict = [cases_dict]
-
-    print(cases_dict, '\n\n')
 
     for t in range(1, T + 1):
         gaussian_map = get_gaussian_map(*location_of_state_in_gmap, t, rows, cols, variance, strength, gamma, alpha)
