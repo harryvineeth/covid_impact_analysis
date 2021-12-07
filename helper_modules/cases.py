@@ -146,5 +146,11 @@ def plot_vaccination_data(vaccines):
 
     if dict_check:
         col.header("Citations:")
+        col.markdown("Browne, E. (2021, August 10). When Were the First U.S. COVID Delta Variant Cases, and How Did It Mutate? Newsweek. https://www.newsweek.com/first-us-covid-delta-variant-cases-how-did-it-mutate-1617871")
+        col.markdown("CDC. (2021, August 4). CDC Museum COVID-19 Timeline. Centers for Disease Control and Prevention. https://www.cdc.gov/museum/timeline/covid19.html")
+        col.markdown("Chatelain, R. (2021, April 2). US Surpasses 100 Million People Who’ve Received At Least 1 COVID-19 Vaccine Dose. Spectrum News NY1. https://www.ny1.com/nyc/all-boroughs/health/2021/04/02/us-surpasses-100-million-people-who-ve-received-at-least-1-covid-19-vaccine-dose")
+        col.markdown("History.com Editors. (2021, September 8). First confirmed case of COVID-19 found in U.S. History. https://www.history.com/this-day-in-history/first-confirmed-case-of-coronavirus-found-in-us-washington-state")
+        col.markdown("Howard, J. C. G. A. J. (2020, March 12). Pandemic: The World Health Organization says coronavirus is a “never before seen” outbreak. CNN. https://edition.cnn.com/2020/03/11/health/coronavirus-pandemic-world-health-organization/index.html")
         col.markdown("Jack, V. (2021, September 27). COVID-19 pandemic cut life expectancy by most since World War Two –study. Reuters.")
+        col.markdown("NBC News. (2020, May 28). U.S. death toll tops 100,000. https://www.nbcnews.com/health/health-news/live-blog/2020-05-27-coronavirus-news-n1215286")
         col.markdown("The New York Times. (2021). Coronavirus (Covid-19) Data in the United States. Retrieved 06 Dec. 2021, from https://github.com/nytimes/covid-19-data.")
