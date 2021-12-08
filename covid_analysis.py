@@ -24,19 +24,19 @@ st.markdown("""
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="nav navbar-nav">
       <li class="nav-item active" id="home" style="font-size: 20px;">
-        <a class="nav-link" href="http://localhost:8501?p=home">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="https://share.streamlit.io/harryvineeth/covid_impact_analysis/main/covid_analysis.py?p=home">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active" id="traffic"  style="font-size: 20px;">
-        <a class="nav-link" href="http://localhost:8501?p=traffic">Traffic</a>
+        <a class="nav-link" href="https://share.streamlit.io/harryvineeth/covid_impact_analysis/main/covid_analysis.py?p=traffic">Traffic</a>
       </li>
       <li class="nav-item active" id="power"  style="font-size: 20px;">
-        <a class="nav-link" href="http://localhost:8501?p=power">Power</a>
+        <a class="nav-link" href="https://share.streamlit.io/harryvineeth/covid_impact_analysis/main/covid_analysis.py?p=power">Power</a>
       </li>
       <li class="nav-item active" id="well-being"  style="font-size: 20px;">
-        <a class="nav-link" href="http://localhost:8501?p=well-being">Well being</a>
+        <a class="nav-link" href="https://share.streamlit.io/harryvineeth/covid_impact_analysis/main/covid_analysis.py?p=well-being">Well being</a>
       </li>
       <li class="nav-item active" id="conclusion" style="font-size: 20px;">
-        <a class="nav-link" href="http://localhost:8501?p=Conclusion">Conclusion</a>
+        <a class="nav-link" href="https://share.streamlit.io/harryvineeth/covid_impact_analysis/main/covid_analysis.py?p=Conclusion">Conclusion</a>
       </li>
     </ul>
   </div>
